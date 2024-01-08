@@ -1,0 +1,2 @@
+Put every application logic here. Must use at least repository pattern
+for ease of use between data transactions.
