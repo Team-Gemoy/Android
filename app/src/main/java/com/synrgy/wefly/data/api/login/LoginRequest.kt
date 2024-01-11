@@ -1,6 +1,6 @@
 package com.synrgy.wefly.data.api.login
 
 data class LoginRequest (
-    val username: String,
+    val email: String,
     val password: String
 )
