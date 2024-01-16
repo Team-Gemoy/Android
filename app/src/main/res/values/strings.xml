@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">WeFly</string>
+    <string name="hint_email">Enter your email</string>
+    <string name="hint_username">Enter username</string>
+    <string name="hint_password">Enter your password</string>
+    <string name="text_signup">Sign Up</string>
+    <string name="hint_phone">Enter phone number</string>
+    <string name="text_login">Login</string>
 </resources>
