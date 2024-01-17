@@ -6,4 +6,8 @@
     <string name="text_signup">Sign Up</string>
     <string name="hint_phone">Enter phone number</string>
     <string name="text_login">Login</string>
+    <string name="title_good_morning">Good Morning</string>
+    <string name="title_where_are_you_going">Where are you going today?</string>
+    <string name="placeholder_date">Mon, 14 Jan 2024</string>
+    <string name="btn_search">Search your flight</string>
 </resources>
