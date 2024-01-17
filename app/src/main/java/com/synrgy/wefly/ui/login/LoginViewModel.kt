@@ -1,11 +1,11 @@
-package com.synrgy.wefly.ui
+package com.synrgy.wefly.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.login.LoginRequest
 import com.synrgy.wefly.data.api.login.LoginResponse
-import com.synrgy.wefly.data.repository.LoginRepositoryImpl
+import com.synrgy.wefly.data.repository.AuthRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val repo: LoginRepositoryImpl
+    private val repo: AuthRepositoryImpl
 ): ViewModel() {
     private val _loginStateFlow: MutableStateFlow<ApiResult<LoginResponse>> =
         MutableStateFlow(ApiResult.Loading())
