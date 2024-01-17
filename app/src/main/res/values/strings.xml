@@ -5,6 +5,7 @@
     <string name="hint_password">Enter your password</string>
     <string name="text_signup">Sign Up</string>
     <string name="hint_phone">Enter phone number</string>
+    <string name="hint_date_of_birth">Enter your date of birth</string>
     <string name="text_login">Login</string>
     <string name="title_good_morning">Good Morning</string>
     <string name="title_where_are_you_going">Where are you going today?</string>
@@ -23,8 +24,10 @@
 
     <string name="email_required">Email is required</string>
     <string name="name_required">Full name is required</string>
+    <string name="date_birth_required">Date of birth is required</string>
     <string name="phone_required">Phone number is required</string>
     <string name="password_required">Password is required</string>
+    <string name="password_spec">Password require minimum eight characters, at least one letter and one number</string>
 
     <string name="day">Day</string>
     <string name="month">Month</string>

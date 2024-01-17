@@ -1,4 +1,4 @@
-package com.synrgy.wefly.ui
+package com.synrgy.wefly.ui.login
 
 import android.os.Bundle
 import android.util.Log
