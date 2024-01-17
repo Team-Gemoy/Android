@@ -1,60 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="19dp"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <ImageView
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_logo" />
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <EditText
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center_horizontal"
+        android:text="@string/register_now"
+        android:textColor="@color/black"
+        android:textSize="34sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center_horizontal"
+        android:text="@string/enter_your_detail"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/email"
+        android:textSize="12sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/CustomOutlinedTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="@color/white"
+        app:errorTextAppearance="@style/ErrorTextAppearance">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="Email"
+            android:fontFamily="@font/poppins_light"
             android:hint="@string/hint_email"
-            android:inputType="textEmailAddress" />
-        <EditText
-            android:id="@+id/et_username"
+            android:inputType="textEmailAddress"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/fullname"
+        android:textSize="12sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/CustomOutlinedTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="@color/white"
+        app:errorTextAppearance="@style/ErrorTextAppearance">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_fullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="Email"
-            android:hint="@string/hint_username"
-            android:inputType="textEmailAddress" />
-        <EditText
-            android:id="@+id/et_dob"
+            android:fontFamily="@font/poppins_light"
+            android:hint="@string/hint_fullname"
+            android:inputType="textPersonName"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/date_of_birth"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/CustomOutlinedTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:focusable="false"
+                android:hint="@string/day" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/CustomOutlinedTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:focusable="false"
+                android:hint="@string/month" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/CustomOutlinedTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:gravity="end">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:focusable="false"
+                android:hint="@string/year" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/phone_number"
+        android:textSize="12sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/CustomOutlinedTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="@color/white"
+        app:errorTextAppearance="@style/ErrorTextAppearance">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_phone_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="Email"
-            android:hint="@string/hint_email"
-            android:inputType="date" />
-        <EditText
-            android:id="@+id/et_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="Email"
+            android:fontFamily="@font/poppins_light"
             android:hint="@string/hint_phone"
-            android:inputType="phone" />
-        <EditText
+            android:inputType="phone"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/password"
+        android:textSize="12sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/CustomOutlinedTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="@color/white"
+        app:errorTextAppearance="@style/ErrorTextAppearance"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="Email"
+            android:fontFamily="@font/poppins_light"
             android:hint="@string/hint_password"
-            android:inputType="textPassword" />
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_signup"/>
-    </LinearLayout>
+            android:inputType="textPassword"
+            android:textSize="14sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="@color/primary_blue_dark"
+        android:paddingVertical="15dp"
+        android:text="@string/sign_up"
+        app:cornerRadius="12dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_sign_up_with_google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/white"
+        android:paddingVertical="15dp"
+        android:text="@string/sign_up_with_google"
+        android:textColor="@color/black"
+        app:cornerRadius="12dp"
+        app:icon="@drawable/ic_google"
+        app:iconTintMode="src_over"
+        app:strokeWidth="0.1dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:text="@string/tnc_agreement"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
