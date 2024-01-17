@@ -4,7 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class UpdateUserResponse(
     val code: String,
-    val data: UserData
+    val data: UserData?,
+    val message: String?,
+    val error: String?
 )
 
 data class UserData(
