@@ -32,6 +32,10 @@
     <string name="day">Day</string>
     <string name="month">Month</string>
     <string name="year">Year</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="text_home">Home</string>
+    <string name="text_order">Order</string>
+    <string name="text_account">Account</string>
 
     <integer-array name="day">
         <item>1</item>

@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.login.LoginRequest
@@ -30,14 +31,20 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun setupUI() {
         with(binding) {
-
+            tvRegister.setOnClickListener {
+                val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+                findNavController().navigate(action)
+            }
+            btnLogin.setOnClickListener {
+                val loginRequest = LoginRequest(
+                    email = "laetuzg@gmail.com",
+                    password = "Kingkong123!"
+                )
+                etEmail.text.toString()
+                etPassword.text.toString()
+                viewModel.login(loginRequest)
+            }
         }
-        val loginRequest = LoginRequest(
-            email = "laetuzg@gmail.com",
-            password = "Kingkong123!"
-        )
-
-        viewModel.login(loginRequest)
         observeStateFlow()
     }
 
@@ -71,5 +78,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 }
             }
         }
+    }
+
+    private fun gotoHome() {
+        val action = LoginFragmentDirections.actionGlobalHomeFragment()
+        findNavController().navigate(action)
     }
 }

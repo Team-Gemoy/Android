@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/homepageFragment"
+            android:title="@string/text_home"
+            android:icon="@drawable/ic_google"/>
+        <item
+            android:id="@+id/orderFragment"
+            android:title="@string/text_order"
+            android:icon="@drawable/ic_google"/>
+        <item
+            android:id="@+id/accountFragment"
+            android:title="@string/text_account"
+            android:icon="@drawable/ic_google"/>
+
+
+</menu>
