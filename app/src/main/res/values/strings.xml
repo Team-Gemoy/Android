@@ -36,6 +36,14 @@
     <string name="text_home">Home</string>
     <string name="text_order">Order</string>
     <string name="text_account">Account</string>
+    <string name="welcome_back">WELCOME BACK</string>
+    <string name="title_forgot_pass">FORGOT PASSWORD?</string>
+    <string name="desc_forgot_pass">No worries, we will send you the reset instructions.</string>
+    <string name="reset_password">Reset password</string>
+    <string name="back_to_login">Back to login</string>
+    <string name="hint_confirm_new_password">Confirm your new password</string>
+    <string name="text_continue">Continue</string>
+    <string name="text_confirm_password">Confirm Password</string>
 
     <integer-array name="day">
         <item>1</item>

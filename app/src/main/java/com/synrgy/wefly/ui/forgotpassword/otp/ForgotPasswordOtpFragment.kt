@@ -1,4 +1,4 @@
-package com.synrgy.wefly.ui.account
+package com.synrgy.wefly.ui.forgotpassword.otp
 
 import android.os.Bundle
 import android.view.View
@@ -7,19 +7,19 @@ import androidx.lifecycle.lifecycleScope
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.login.LoginResponse
-import com.synrgy.wefly.databinding.FragmentAccountBinding
+import com.synrgy.wefly.databinding.FragmentForgotPassOtpBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AccountFragment : Fragment(R.layout.fragment_account) {
-    private lateinit var binding: FragmentAccountBinding
+class ForgotPasswordOtpFragment : Fragment(R.layout.fragment_forgot_pass_otp) {
+    private lateinit var binding: FragmentForgotPassOtpBinding
 
    // private val viewModel: OrderViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentAccountBinding.bind(view)
+        binding = FragmentForgotPassOtpBinding.bind(view)
 
         setupUI()
     }

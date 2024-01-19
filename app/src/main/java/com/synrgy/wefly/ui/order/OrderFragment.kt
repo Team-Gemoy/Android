@@ -8,19 +8,19 @@ import androidx.lifecycle.lifecycleScope
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.login.LoginResponse
-import com.synrgy.wefly.databinding.FragmentHomepageBinding
+import com.synrgy.wefly.databinding.FragmentOrderBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class OrderFragment : Fragment(R.layout.fragment_homepage) {
-    private lateinit var binding: FragmentHomepageBinding
+class OrderFragment : Fragment(R.layout.fragment_order) {
+    private lateinit var binding: FragmentOrderBinding
 
     private val viewModel: OrderViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentHomepageBinding.bind(view)
+        binding = FragmentOrderBinding.bind(view)
 
         setupUI()
     }
