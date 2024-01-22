@@ -43,9 +43,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 etEmail.text.toString()
                 etPassword.text.toString()
                 viewModel.login(loginRequest)
+                observeStateFlow()
             }
         }
-        observeStateFlow()
     }
 
     private fun observeStateFlow() {
@@ -74,14 +74,18 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 is ApiResult.Success -> {
                  //   pbLogin.visibility = View.GONE
                     val head = status.data?.code.toString()
+                    val getToken = status.data?.accessToken.toString()
+                    viewModel.setToken(getToken)
+                    gotoHome(tokenPls = getToken)
                     Log.d("neotica", "handleSignInResult: $head")
+                    Log.d("neotica", "token: $getToken")
                 }
             }
         }
     }
 
-    private fun gotoHome() {
-        val action = LoginFragmentDirections.actionGlobalHomeFragment()
+    private fun gotoHome(tokenPls: String) {
+        val action = LoginFragmentDirections.actionGlobalHomeFragment(getToken = tokenPls)
         findNavController().navigate(action)
     }
 }

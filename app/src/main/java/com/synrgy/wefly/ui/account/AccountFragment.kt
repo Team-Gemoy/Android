@@ -3,7 +3,9 @@ package com.synrgy.wefly.ui.account
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.login.LoginResponse
@@ -15,7 +17,7 @@ import kotlinx.coroutines.launch
 class AccountFragment : Fragment(R.layout.fragment_account) {
     private lateinit var binding: FragmentAccountBinding
 
-   // private val viewModel: OrderViewModel by viewModels()
+    private val viewModel: AccountViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,7 +28,11 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
 
     private fun setupUI() {
         with(binding) {
-
+            btnLogout.setOnClickListener {
+                val action = AccountFragmentDirections.actionAccountFragmentToAuthGroup()
+                findNavController().navigate(action)
+                viewModel.logout()
+            }
         }
     }
 

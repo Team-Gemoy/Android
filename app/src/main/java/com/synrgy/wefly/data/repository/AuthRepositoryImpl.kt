@@ -14,8 +14,9 @@ import retrofit2.await
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
 ): AuthRepository {
+
     override fun login(loginRequest: LoginRequest): Flow<ApiResult<LoginResponse>> =
         flow {
             emit(ApiResult.Loading())

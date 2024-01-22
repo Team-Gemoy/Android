@@ -1,12 +1,14 @@
 package com.synrgy.wefly.ui.homepage
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
+import com.synrgy.wefly.common.repeatCollectionOnCreated
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.login.LoginResponse
 import com.synrgy.wefly.databinding.FragmentHomepageBinding
@@ -24,6 +26,9 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
         binding = FragmentHomepageBinding.bind(view)
 
         setupUI()
+        repeatCollectionOnCreated {
+            tokenRan()
+        }
     }
 
     private fun setupUI() {
@@ -44,14 +49,33 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
         }
     }
 
-    override fun onStart() {
+  /*  override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
-       /* val currentUser = auth.currentUser f
-        if (currentUser == null) {
-            gotoLogin()
-        }*/
-        gotoLogin()
+        repeatCollectionOnCreated {
+
+            viewModel.token.collect {
+                if (it.isEmpty()) {
+                    *//*gotoLogin()
+                    val args = HomepageFragmentArgs.fromBundle(arguments as Bundle)
+                    viewModel.setToken(args.getToken)*//*
+                   // args.getToken?.let { viewModel.setToken(it) }
+                }
+                Log.d("neotica", "token: $it")
+            }
+        }
+    }*/
+
+    private suspend fun tokenRan () {
+        viewModel.token.collect {
+            if (it.isEmpty()) {
+                gotoLogin()
+                val args = HomepageFragmentArgs.fromBundle(arguments as Bundle)
+                viewModel.setToken(args.getToken)
+                // args.getToken?.let { viewModel.setToken(it) }
+            }
+            Log.d("neotica", "token: $it")
+        }
     }
 
     private fun gotoLogin() {

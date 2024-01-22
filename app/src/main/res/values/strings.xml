@@ -44,6 +44,7 @@
     <string name="hint_confirm_new_password">Confirm your new password</string>
     <string name="text_continue">Continue</string>
     <string name="text_confirm_password">Confirm Password</string>
+    <string name="logout">Logout</string>
 
     <integer-array name="day">
         <item>1</item>

@@ -17,6 +17,9 @@
             <action
                 android:id="@+id/action_loginFragment_to_homepageFragment"
                 app:destination="@id/homepageFragment" />
+            <action
+                android:id="@+id/action_homepageFragment_to_authGroup"
+                app:destination="@id/authGroup" />
         </fragment>
         <fragment
             android:id="@+id/registerFragment"
@@ -27,6 +30,9 @@
             app:popUpTo="@+id/authGroup"
             app:popUpToInclusive="true"
             app:destination="@id/homepageFragment" />
+        <action
+            android:id="@+id/action_global_accountFragment"
+            app:destination="@id/accountFragment" />
     </navigation>
 
     <fragment
@@ -36,11 +42,20 @@
         <action
             android:id="@+id/action_homepageFragment_to_authGroup"
             app:destination="@id/authGroup" />
+        <argument
+            android:name="getToken"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="defaultstuff" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.synrgy.wefly.ui.account.AccountFragment"
-        android:label="AccountFragment" />
+        android:label="AccountFragment" >
+        <action
+            android:id="@+id/action_accountFragment_to_authGroup"
+            app:destination="@id/authGroup" />
+    </fragment>
     <fragment
         android:id="@+id/orderFragment"
         android:name="com.synrgy.wefly.ui.order.OrderFragment"
