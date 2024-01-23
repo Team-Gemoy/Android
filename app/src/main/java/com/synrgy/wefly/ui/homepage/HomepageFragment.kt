@@ -48,31 +48,10 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
 
         }
     }
-
-  /*  override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        repeatCollectionOnCreated {
-
-            viewModel.token.collect {
-                if (it.isEmpty()) {
-                    *//*gotoLogin()
-                    val args = HomepageFragmentArgs.fromBundle(arguments as Bundle)
-                    viewModel.setToken(args.getToken)*//*
-                   // args.getToken?.let { viewModel.setToken(it) }
-                }
-                Log.d("neotica", "token: $it")
-            }
-        }
-    }*/
-
     private suspend fun tokenRan () {
         viewModel.token.collect {
             if (it.isEmpty()) {
                 gotoLogin()
-               // val args = HomepageFragmentArgs.fromBundle(arguments as Bundle)
-               // viewModel.setToken(args.getToken)
-                // args.getToken?.let { viewModel.setToken(it) }
             }
             Log.d("neotica", "token: $it")
         }

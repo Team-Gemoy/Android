@@ -14,7 +14,6 @@ import com.synrgy.wefly.data.api.login.LoginRequest
 import com.synrgy.wefly.data.api.login.LoginResponse
 import com.synrgy.wefly.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -24,7 +23,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var binding: FragmentLoginBinding
 
     private val viewModel: LoginViewModel by viewModels()
-    private var loginJob: Job? = null
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
