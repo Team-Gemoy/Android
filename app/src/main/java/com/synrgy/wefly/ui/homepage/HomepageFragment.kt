@@ -70,8 +70,8 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
         viewModel.token.collect {
             if (it.isEmpty()) {
                 gotoLogin()
-                val args = HomepageFragmentArgs.fromBundle(arguments as Bundle)
-                viewModel.setToken(args.getToken)
+               // val args = HomepageFragmentArgs.fromBundle(arguments as Bundle)
+               // viewModel.setToken(args.getToken)
                 // args.getToken?.let { viewModel.setToken(it) }
             }
             Log.d("neotica", "token: $it")

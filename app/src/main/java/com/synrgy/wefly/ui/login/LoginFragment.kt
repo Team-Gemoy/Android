@@ -14,13 +14,18 @@ import com.synrgy.wefly.data.api.login.LoginRequest
 import com.synrgy.wefly.data.api.login.LoginResponse
 import com.synrgy.wefly.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var binding: FragmentLoginBinding
 
     private val viewModel: LoginViewModel by viewModels()
+    private var loginJob: Job? = null
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,12 +41,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 findNavController().navigate(action)
             }
             btnLogin.setOnClickListener {
-                val loginRequest = LoginRequest(
+               /* val loginRequest = LoginRequest(
                     email = "laetuzg@gmail.com",
                     password = "Kingkong123!"
+                )*/
+                val email = etEmail.text.toString()
+                val password = etPassword.text.toString()
+                val loginRequest = LoginRequest(
+                    email, password
                 )
-                etEmail.text.toString()
-                etPassword.text.toString()
                 viewModel.login(loginRequest)
                 observeStateFlow()
             }
@@ -76,16 +84,19 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     val head = status.data?.code.toString()
                     val getToken = status.data?.accessToken.toString()
                     viewModel.setToken(getToken)
-                    gotoHome(tokenPls = getToken)
+                    gotoHome()
                     Log.d("neotica", "handleSignInResult: $head")
-                    Log.d("neotica", "token: $getToken")
+                    Log.d("neotica", "token success: $getToken")
                 }
             }
         }
     }
 
-    private fun gotoHome(tokenPls: String) {
-        val action = LoginFragmentDirections.actionGlobalHomeFragment(getToken = tokenPls)
-        findNavController().navigate(action)
+    private fun gotoHome() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(500)
+            val action = LoginFragmentDirections.actionGlobalHomeFragment()
+            findNavController().navigate(action)
+        }
     }
 }

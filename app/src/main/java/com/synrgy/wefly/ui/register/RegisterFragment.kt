@@ -5,12 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.synrgy.wefly.R
 import com.synrgy.wefly.common.UiUtils.getTextInputLayout
+import com.synrgy.wefly.common.showDatePickerDialog
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.register.RegisterRequest
 import com.synrgy.wefly.data.api.register.RegisterResponse
@@ -58,14 +60,15 @@ class RegisterFragment : Fragment() {
                         fullName = etFullname.text.toString(),
                         phoneNumber = etPhoneNumber.text.toString(),
                         password = etPassword.text.toString(),
+                        dateOfBirth = etDateOfBirth.text.toString()
                     )
 
                     viewModel.register(registerRequest)
                 }
             }
-
             etDateOfBirth.setOnClickListener {
                 // Open Date Picker
+                showDatePickerDialog(requireContext(), etDateOfBirth)
             }
         }
     }
@@ -101,15 +104,15 @@ class RegisterFragment : Fragment() {
 
             etPassword.addTextChangedListener {
                 val password = it.toString()
-                val passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d).{8,}\$"
+             //   val passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d).{8,}\$"
 
                 if (password.isEmpty()) {
                     binding.etPassword.getTextInputLayout().error =
                         resources.getString(R.string.password_required)
-                } else if (password.matches(passwordPattern.toRegex())) {
+                } /*else if (password.matches(passwordPattern.toRegex())) {
                     binding.etPassword.getTextInputLayout().error =
                         resources.getString(R.string.password_spec)
-                } else {
+                }*/ else {
                     binding.etPassword.getTextInputLayout().error = null
                 }
             }
@@ -142,6 +145,7 @@ class RegisterFragment : Fragment() {
                 //pbRegister.visibility = View.GONE
                 //Toast.makeText(requireContext(), "Register Success", Toast.LENGTH_SHORT).show()
                 Log.d("Register", "Success")
+                Toast.makeText(context, "${status.data?.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }

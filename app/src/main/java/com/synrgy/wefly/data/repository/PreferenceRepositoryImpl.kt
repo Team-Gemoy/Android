@@ -27,9 +27,13 @@ class PreferenceRepositoryImpl @Inject constructor(
     }
 
     override suspend fun setToken(value: String) {
-        dataStore.edit {
-            it[TOKEN] = value
-            Log.d("neotica-token", "Token saved: $value")
+        try {
+            dataStore.edit {
+                it[TOKEN] = value
+                Log.d("neotica-token", "Token saved: $value")
+            }
+        } catch (e: Exception) {
+            Log.e("neotica-token", "Error saving token: ${e.message}", e)
         }
     }
 

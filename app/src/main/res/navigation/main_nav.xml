@@ -42,11 +42,6 @@
         <action
             android:id="@+id/action_homepageFragment_to_authGroup"
             app:destination="@id/authGroup" />
-        <argument
-            android:name="getToken"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="defaultstuff" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
