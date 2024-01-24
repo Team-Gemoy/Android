@@ -22,6 +22,7 @@ interface ApiService {
     @POST("forget-password/forgot-password")
     fun forgotPassword(@Body forgotPasswordRequest: ForgotPassRequest): Call<ForgotPassResponse>
 
+    //Airport
     @GET("airport/list")
     suspend fun getAirportList(): AirportListResponse
 }
