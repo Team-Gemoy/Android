@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.common.repeatCollectionOnCreated
+import com.synrgy.wefly.common.showDatePickerDialog
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.databinding.FragmentHomepageBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,11 +38,14 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
 
     private fun setupUI() {
         with(binding) {
-
+            ivDateDeparture.setOnClickListener {
+                showDatePickerDialog(requireContext(), etDateDeparture)
+            }
+            ivDateReturn.setOnClickListener {
+                showDatePickerDialog(requireContext(), etDateReturn)
+            }
         }
     }
-
-
 
     private fun observeStateFlow() {
         viewLifecycleOwner.lifecycleScope.launch {
