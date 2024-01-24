@@ -7,19 +7,23 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.login.LoginRequest
 import com.synrgy.wefly.data.api.login.LoginResponse
 import com.synrgy.wefly.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var binding: FragmentLoginBinding
 
     private val viewModel: LoginViewModel by viewModels()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,15 +34,24 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun setupUI() {
         with(binding) {
-
+            tvRegister.setOnClickListener {
+                val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+                findNavController().navigate(action)
+            }
+            btnLogin.setOnClickListener {
+               /* val loginRequest = LoginRequest(
+                    email = "laetuzg@gmail.com",
+                    password = "Kingkong123!"
+                )*/
+                val email = etEmail.text.toString()
+                val password = etPassword.text.toString()
+                val loginRequest = LoginRequest(
+                    email, password
+                )
+                viewModel.login(loginRequest)
+                observeStateFlow()
+            }
         }
-        val loginRequest = LoginRequest(
-            email = "laetuzg@gmail.com",
-            password = "Kingkong123!"
-        )
-
-        viewModel.login(loginRequest)
-        observeStateFlow()
     }
 
     private fun observeStateFlow() {
@@ -67,9 +80,21 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 is ApiResult.Success -> {
                  //   pbLogin.visibility = View.GONE
                     val head = status.data?.code.toString()
+                    val getToken = status.data?.accessToken.toString()
+                    viewModel.setToken(getToken)
+                    gotoHome()
                     Log.d("neotica", "handleSignInResult: $head")
+                    Log.d("neotica", "token success: $getToken")
                 }
             }
+        }
+    }
+
+    private fun gotoHome() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(500)
+            val action = LoginFragmentDirections.actionGlobalHomeFragment()
+            findNavController().navigate(action)
         }
     }
 }

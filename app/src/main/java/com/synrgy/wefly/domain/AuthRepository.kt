@@ -11,4 +11,5 @@ interface AuthRepository {
     fun login(loginRequest: LoginRequest): Flow<ApiResult<LoginResponse>>
 
     fun register(registerRequest: RegisterRequest): Flow<ApiResult<RegisterResponse>>
+
 }

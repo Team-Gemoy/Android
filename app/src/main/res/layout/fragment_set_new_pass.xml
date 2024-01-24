@@ -44,28 +44,6 @@
             android:text="@string/enter_your_detail"
             android:textSize="14sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/email"
-            android:textSize="12sp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/CustomOutlinedTextField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:boxBackgroundColor="@color/white"
-            app:errorTextAppearance="@style/ErrorTextAppearance">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints="Email"
-                android:hint="@string/hint_email"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -90,6 +68,31 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/text_confirm_password"
+            android:textSize="12sp" />
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/CustomOutlinedTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@color/white"
+            app:errorTextAppearance="@style/ErrorTextAppearance"
+            app:passwordToggleEnabled="false">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_conf_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Email"
+                android:hint="@string/hint_confirm_new_password"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login"
             android:backgroundTint="@color/primary_blue_dark"
@@ -97,7 +100,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text_login"/>
+            android:text="@string/reset_password"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -109,18 +112,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="@string/dont_have_account"
+                android:text="@string/back_to_login"
                 android:layout_marginEnd="5dp"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/sign_up"
-                android:textColor="@color/primary_blue"
                 android:textSize="12sp" />
         </LinearLayout>
 

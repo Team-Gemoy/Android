@@ -26,4 +26,6 @@
     <color name="warning">#F1A025</color>
     <color name="success">#18AF5E</color>
     <color name="star">#FFD43A</color>
+
+    <color name="wefly_main">#3040DC</color>
 </resources>
