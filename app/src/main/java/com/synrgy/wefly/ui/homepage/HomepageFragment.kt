@@ -3,6 +3,7 @@ package com.synrgy.wefly.ui.homepage
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -33,13 +34,20 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
 
     private fun setupUI() {
         with(binding) {
-
+            btnSearchFlight.setOnClickListener { viewModel.getAirportList();observeStateFlow() }
         }
     }
 
     private fun observeStateFlow() {
         viewLifecycleOwner.lifecycleScope.launch {
-
+            viewModel.airportList.collect {
+                val content = it.data?.data?.content?.get(1)?.city
+                when(it){
+                    is ApiResult.Loading -> Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+                    is ApiResult.Success -> Toast.makeText(context, content.toString(), Toast.LENGTH_SHORT).show()
+                    is ApiResult.Error -> Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
