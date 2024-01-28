@@ -45,6 +45,8 @@
     <string name="text_continue">Continue</string>
     <string name="text_confirm_password">Confirm Password</string>
     <string name="logout">Logout</string>
+    <string name="departure_to">To</string>
+    <string name="departure_from">From</string>
 
     <integer-array name="day">
         <item>1</item>

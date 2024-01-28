@@ -1,5 +1,6 @@
 package com.synrgy.wefly.data.api
 
+import com.synrgy.wefly.data.api.airport.list.AirportListResponse
 import com.synrgy.wefly.data.api.forgetpassword.ForgotPassRequest
 import com.synrgy.wefly.data.api.forgetpassword.ForgotPassResponse
 import com.synrgy.wefly.data.api.login.LoginRequest
@@ -8,6 +9,7 @@ import com.synrgy.wefly.data.api.register.RegisterRequest
 import com.synrgy.wefly.data.api.register.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
@@ -19,4 +21,8 @@ interface ApiService {
 
     @POST("forget-password/forgot-password")
     fun forgotPassword(@Body forgotPasswordRequest: ForgotPassRequest): Call<ForgotPassResponse>
+
+    //Airport
+    @GET("airport/list")
+    suspend fun getAirportList(): AirportListResponse
 }
