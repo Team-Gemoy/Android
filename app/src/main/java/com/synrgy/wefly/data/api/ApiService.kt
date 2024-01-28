@@ -12,6 +12,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
     @POST("user-login/login")
@@ -27,8 +28,13 @@ interface ApiService {
     @GET("airport/list")
     suspend fun getAirportList(): AirportListResponse
 
-    @GET("flight/list?departureAirportId=2&arrivalAirportId=1&departDate=26-01-2024&seatClass=BUSINESS&numberOfPassenger=1")
+    @GET("flight/list")
     suspend fun getFlight(
-        //@Path("departureAirportId") departId: Int
+      //  @Path("departDate") departDate: String
+        @Query("departureAirportId") departureAirportId: Int,
+        @Query("arrivalAirportId") arrivalAirportId: Int,
+        @Query("departDate") departDate: String,
+        @Query("seatClass") seatClass: String,
+        @Query("numberOfPassenger") numberOfPassenger: Int
     ): FlightListResponse
 }

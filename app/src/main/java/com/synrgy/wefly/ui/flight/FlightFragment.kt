@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.flight.FlightContent
-import com.synrgy.wefly.data.api.login.LoginResponse
 import com.synrgy.wefly.databinding.FragmentFlightBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -27,12 +26,16 @@ class FlightFragment : Fragment(R.layout.fragment_flight) {
 
         setupUI()
         observeStateFlow()
-        viewModel.getFlight()
     }
 
     private fun setupUI() {
+        val args = FlightFragmentArgs.fromBundle(arguments as Bundle)
         with(binding) {
-
+            viewModel.getFlight(
+                departDate = "26-01-2024",
+                seatClass = args.seatClass,
+                numberOfPassenger = args.passenger
+            )
         }
     }
 

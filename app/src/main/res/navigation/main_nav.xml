@@ -61,5 +61,12 @@
     <fragment
         android:id="@+id/flightFragment"
         android:name="com.synrgy.wefly.ui.flight.FlightFragment"
-        android:label="FlightFragment" />
+        android:label="FlightFragment" >
+        <argument
+            android:name="seatClass"
+            app:argType="string" />
+        <argument
+            android:name="passenger"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -27,8 +27,18 @@ class FlightViewModel @Inject constructor(
 
 
 
-    fun getFlight() = viewModelScope.launch {
-        repo.getFlight().onStart { _flightList.value = ApiResult.Loading() }
+    fun getFlight(
+        departDate: String,
+        seatClass: String,
+        numberOfPassenger: Int
+    ) = viewModelScope.launch {
+        repo.getFlight(
+            departureAirportId = 2,
+            arrivalAirportId = 1,
+            departDate = departDate,
+            seatClass = seatClass,
+            numberOfPassenger = numberOfPassenger
+        ).onStart { _flightList.value = ApiResult.Loading() }
             .collect {
             _flightList.value = it
         }

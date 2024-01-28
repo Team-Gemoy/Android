@@ -3,7 +3,6 @@ package com.synrgy.wefly.ui.homepage
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -45,13 +44,20 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
                 showDatePickerDialog(requireContext(), etDateReturn)
             }
             btnSearchFlight.setOnClickListener {
-                val action = HomepageFragmentDirections.actionHomepageFragmentToFlightFragment()
+                val action = HomepageFragmentDirections.actionHomepageFragmentToFlightFragment(
+                    seatClass = spSeatClass.selectedItem.toString(),
+                    passenger = spPassenger.selectedItem.toString().toInt()
+                )
                 findNavController().navigate(action)
             }
             val passengerArray = arrayOf(1, 2, 3, 4, 5)
-            homeSpinnerAdapter(array = passengerArray, spinner = spPassenger)
-            val classArray = arrayOf("Economy", "Business")
-            homeSpinnerAdapter(classArray, spSeatClass)
+            homeSpinnerAdapter(array = passengerArray, spinner = spPassenger) {
+                Log.d("Neotica", "spinner ${passengerArray[it]}")
+            }
+            val classArray = arrayOf("ECONOMY", "BUSINESS")
+            homeSpinnerAdapter(classArray, spSeatClass) {
+                Log.d("Neotica", "spinner ${classArray[it]}")
+            }
         }
     }
 
@@ -78,14 +84,18 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
     }
 
     private fun departure(city: Array<String>){
-        homeSpinnerAdapter(city, binding.spFlightFrom)
+        homeSpinnerAdapter(city, binding.spFlightFrom){
+            Log.d("Neotica", "spinner ${city[it]}")
+        }
     }
     private fun arrival(city: Array<String>){
-        homeSpinnerAdapter(city, binding.spFlightTo)
+        homeSpinnerAdapter(city, binding.spFlightTo) {
+            Log.d("Neotica", "spinner ${city[it]}")
+        }
     }
 
-    private fun homeSpinnerAdapter(array: Array<*>, spinner: Spinner){
-        spinnerAdapter(array = array, spinner = spinner, context = requireContext())
+    private fun homeSpinnerAdapter(array: Array<out Any>, spinner: Spinner, onItemSelected: (position: Int) -> Unit){
+        spinnerAdapter(array = array, spinner = spinner, context = requireContext(), onItemSelected = onItemSelected)
     }
 
     private suspend fun tokenRan () {

@@ -13,9 +13,21 @@ class FlightRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ): FlightRepository {
 
-    override suspend fun getFlight(): Flow<ApiResult<FlightListResponse>> = flow {
+    override suspend fun getFlight(
+        departureAirportId: Int,
+        arrivalAirportId: Int,
+        departDate: String,
+        seatClass: String,
+        numberOfPassenger: Int
+    ): Flow<ApiResult<FlightListResponse>> = flow {
         emit(ApiResult.Loading())
-        val response = apiService.getFlight()
+        val response = apiService.getFlight(
+            departureAirportId = departureAirportId,
+            arrivalAirportId = arrivalAirportId,
+            departDate = departDate,
+            seatClass = seatClass,
+            numberOfPassenger = numberOfPassenger
+        )
         emit(ApiResult.Success(response))
     }.catch {
         emit(ApiResult.Error(it.message?: "Error Loading Flight list"))

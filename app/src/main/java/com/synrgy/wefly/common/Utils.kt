@@ -55,7 +55,7 @@ fun showDatePickerDialog(context: Context, birth: TextView) {
     datePickerDialog.show()
 }
 
-fun spinnerAdapter(array: Array<*>, spinner: Spinner, context: Context){
+fun spinnerAdapter(array: Array<*>, spinner: Spinner, context: Context, onItemSelected: (position: Int) -> Unit){
     val arrayAdapter = ArrayAdapter(context, R.layout.simple_spinner_dropdown_item, array)
     spinner.adapter = arrayAdapter
     spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -65,7 +65,8 @@ fun spinnerAdapter(array: Array<*>, spinner: Spinner, context: Context){
             position: Int,
             id: Long
         ) {
-            Log.d("neotica", array[position].toString())
+         //   Log.d("neotica", array[position].toString())
+            onItemSelected(position)
         }
         override fun onNothingSelected(parent: AdapterView<*>?) {
             Log.d("neotica", "Nothing is selected")
