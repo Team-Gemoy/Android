@@ -50,7 +50,15 @@
 
     <string name="placeholder_loading">Loading…</string>
 
-    <integer-array name="day">
+    <integer-array name="passenger">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
+
+    <string-array name="day">
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -82,7 +90,7 @@
         <item>29</item>
         <item>30</item>
         <item>31</item>
-    </integer-array>
+    </string-array>
 
     <array name="month">
         <item>January</item>

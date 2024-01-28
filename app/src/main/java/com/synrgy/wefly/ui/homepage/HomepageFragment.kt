@@ -3,7 +3,6 @@ package com.synrgy.wefly.ui.homepage
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
@@ -13,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.common.repeatCollectionOnCreated
 import com.synrgy.wefly.common.showDatePickerDialog
+import com.synrgy.wefly.common.spinnerAdapter
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.databinding.FragmentHomepageBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,6 +48,10 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
                 val action = HomepageFragmentDirections.actionHomepageFragmentToFlightFragment()
                 findNavController().navigate(action)
             }
+            val passengerArray = arrayOf(1, 2, 3, 4, 5)
+            homeSpinnerAdapter(array = passengerArray, spinner = spPassenger)
+            val classArray = arrayOf("Economy", "Business")
+            homeSpinnerAdapter(classArray, spSeatClass)
         }
     }
 
@@ -74,32 +78,14 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
     }
 
     private fun departure(city: Array<String>){
-        flight(city, binding.spFlightFrom)
+        homeSpinnerAdapter(city, binding.spFlightFrom)
     }
     private fun arrival(city: Array<String>){
-        flight(city, binding.spFlightTo)
+        homeSpinnerAdapter(city, binding.spFlightTo)
     }
 
-    private fun flight(arrayDemo: Array<String>, spinner: Spinner){
-        with(binding) {
-            val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrayDemo)
-            spinner.adapter = arrayAdapter
-            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    Log.d("neotica", arrayDemo[position])
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    Log.d("neotica", "Nothing is selected")
-                }
-
-            }
-        }
+    private fun homeSpinnerAdapter(array: Array<*>, spinner: Spinner){
+        spinnerAdapter(array = array, spinner = spinner, context = requireContext())
     }
 
     private suspend fun tokenRan () {
