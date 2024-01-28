@@ -1,6 +1,7 @@
 package com.synrgy.wefly.data.api
 
 import com.synrgy.wefly.data.api.airport.list.AirportListResponse
+import com.synrgy.wefly.data.api.flight.FlightListResponse
 import com.synrgy.wefly.data.api.forgetpassword.ForgotPassRequest
 import com.synrgy.wefly.data.api.forgetpassword.ForgotPassResponse
 import com.synrgy.wefly.data.api.login.LoginRequest
@@ -25,4 +26,9 @@ interface ApiService {
     //Airport
     @GET("airport/list")
     suspend fun getAirportList(): AirportListResponse
+
+    @GET("flight/list?departureAirportId=2&arrivalAirportId=1&departDate=26-01-2024&seatClass=BUSINESS&numberOfPassenger=1")
+    suspend fun getFlight(
+        //@Path("departureAirportId") departId: Int
+    ): FlightListResponse
 }

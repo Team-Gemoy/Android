@@ -48,6 +48,8 @@
     <string name="departure_to">To</string>
     <string name="departure_from">From</string>
 
+    <string name="placeholder_loading">Loading…</string>
+
     <integer-array name="day">
         <item>1</item>
         <item>2</item>

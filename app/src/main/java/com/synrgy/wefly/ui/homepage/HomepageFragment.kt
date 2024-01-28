@@ -44,6 +44,10 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
             ivDateReturn.setOnClickListener {
                 showDatePickerDialog(requireContext(), etDateReturn)
             }
+            btnSearchFlight.setOnClickListener {
+                val action = HomepageFragmentDirections.actionHomepageFragmentToFlightFragment()
+                findNavController().navigate(action)
+            }
         }
     }
 
