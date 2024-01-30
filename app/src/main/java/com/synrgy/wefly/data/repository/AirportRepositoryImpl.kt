@@ -19,4 +19,5 @@ class AirportRepositoryImpl @Inject constructor(
     }.catch {
         emit(ApiResult.Error(it.message?: "Error Loading Airport Lists"))
     }
+
 }

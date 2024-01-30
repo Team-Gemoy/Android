@@ -3,8 +3,6 @@ package com.synrgy.wefly.ui.homepage
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,8 +11,14 @@ import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.common.repeatCollectionOnCreated
 import com.synrgy.wefly.common.showDatePickerDialog
+import com.synrgy.wefly.common.spinnerAdapter
 import com.synrgy.wefly.data.api.ApiResult
+import com.synrgy.wefly.data.api.transaction.Orderer
+import com.synrgy.wefly.data.api.transaction.Passenger
+import com.synrgy.wefly.data.api.transaction.TransactionDetailRequest
+import com.synrgy.wefly.data.api.transaction.TransactionRequest
 import com.synrgy.wefly.databinding.FragmentHomepageBinding
+import com.synrgy.wefly.ui.transaction.TransactionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -23,6 +27,7 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
     private lateinit var binding: FragmentHomepageBinding
 
     private val viewModel: HomeViewModel by viewModels()
+    private val transactionModel: TransactionViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,6 +48,48 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
             }
             ivDateReturn.setOnClickListener {
                 showDatePickerDialog(requireContext(), etDateReturn)
+            }
+            btnSearchFlight.setOnClickListener {
+                val action = HomepageFragmentDirections.actionHomepageFragmentToFlightFragment(
+                    seatClass = spSeatClass.selectedItem.toString(),
+                    passenger = spPassenger.selectedItem.toString().toInt()
+                )
+                findNavController().navigate(action)
+            }
+            val passengerArray = arrayOf(1, 2, 3, 4, 5)
+            homeSpinnerAdapter(array = passengerArray, spinner = spPassenger)
+            val classArray = arrayOf("ECONOMY", "BUSINESS")
+            homeSpinnerAdapter(classArray, spSeatClass)
+
+            ivNotification.setOnClickListener {
+                val passengers = Passenger(
+                    id = 2,
+                    firstName = "martin",
+                    lastName = "shit",
+                    dateOfBirth = "11-06-2000",
+                    nationality = "Indonesia"
+                )
+                val passengerArray = arrayListOf(passengers)
+                val orderer = Orderer(
+                    createdDate = "",
+                    deletedDate = "",
+                    updatedDate= "",
+                    id = 2,
+                    firstName = "firstname",
+                    lastName = "lastname",
+                    phoneNumber = "324234",
+                    email = "ex@gmail.com"
+                )
+                val transactionDetails = TransactionDetailRequest(2)
+                val transactionRequest = TransactionRequest(
+                    adultPassenger = 2,
+                    childPassenger = 2,
+                    infantPassenger = 2,
+                    passengers = passengerArray,
+                    orderer = orderer,
+                    transactionDetails = arrayListOf(transactionDetails)
+                )
+                transactionModel.transaction(transactionRequest)
             }
         }
     }
@@ -70,32 +117,14 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
     }
 
     private fun departure(city: Array<String>){
-        flight(city, binding.spFlightFrom)
+        homeSpinnerAdapter(city, binding.spFlightFrom)
     }
     private fun arrival(city: Array<String>){
-        flight(city, binding.spFlightTo)
+        homeSpinnerAdapter(city, binding.spFlightTo)
     }
 
-    private fun flight(arrayDemo: Array<String>, spinner: Spinner){
-        with(binding) {
-            val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrayDemo)
-            spinner.adapter = arrayAdapter
-            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    Log.d("neotica", arrayDemo[position])
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    Log.d("neotica", "Nothing is selected")
-                }
-
-            }
-        }
+    private fun homeSpinnerAdapter(array: Array<out Any>, spinner: Spinner, onItemSelected: (position: Int) -> Unit = {}){
+        spinnerAdapter(array = array, spinner = spinner, context = requireContext(), onItemSelected = onItemSelected)
     }
 
     private suspend fun tokenRan () {

@@ -1,7 +1,13 @@
 package com.synrgy.wefly.common
 
+import android.R
 import android.app.DatePickerDialog
 import android.content.Context
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -47,4 +53,23 @@ fun showDatePickerDialog(context: Context, birth: TextView) {
 
     datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
     datePickerDialog.show()
+}
+
+fun spinnerAdapter(array: Array<*>, spinner: Spinner, context: Context, onItemSelected: (position: Int) -> Unit?={}){
+    val arrayAdapter = ArrayAdapter(context, R.layout.simple_spinner_dropdown_item, array)
+    spinner.adapter = arrayAdapter
+    spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(
+            parent: AdapterView<*>?,
+            view: View?,
+            position: Int,
+            id: Long
+        ) {
+         //   Log.d("neotica", array[position].toString())
+            onItemSelected(position)
+        }
+        override fun onNothingSelected(parent: AdapterView<*>?) {
+            Log.d("neotica", "Nothing is selected")
+        }
+    }
 }
