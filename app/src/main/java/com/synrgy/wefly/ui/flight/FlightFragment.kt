@@ -1,6 +1,7 @@
 package com.synrgy.wefly.ui.flight
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -43,17 +44,21 @@ class FlightFragment : Fragment(R.layout.fragment_flight) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.flightList.collect() { result ->
                 when(result) {
-                    is ApiResult.Loading -> Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+                    is ApiResult.Loading -> binding.pbMain.visibility = View.VISIBLE
                     is ApiResult.Success -> {
+                        binding.pbMain.visibility = View.GONE
                         result.data?.let {
                             if (it.data.content.isEmpty()) {
-                                Toast.makeText(context, "Empty", Toast.LENGTH_SHORT).show()
+                                Log.d("flight", "observeStateFlow: error")
                             } else {
                                 updateRecyclerView(it.data.content)
                             }
                         }
                     }
-                    is ApiResult.Error -> Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                    is ApiResult.Error -> {
+                        binding.pbMain.visibility = View.GONE
+                        Log.d("flight", "observeStateFlow: error")
+                    }
                 }
             }
         }
@@ -63,7 +68,11 @@ class FlightFragment : Fragment(R.layout.fragment_flight) {
         val binding = view?.let { FragmentFlightBinding.bind(it) }
         val layoutManager = LinearLayoutManager(context)
         val recView = binding?.rvFlight
-        val adapter = FlightAdapter(listItem = list)
+        val adapter = FlightAdapter(listItem = list, object : FlightAdapter.FlightListener {
+            override fun onItemClick(item: FlightContent) {
+                Toast.makeText(context, "${item.flight.basePrice}", Toast.LENGTH_SHORT).show()
+            }
+        })
         recView?.layoutManager = layoutManager
         recView?.adapter = adapter
     }

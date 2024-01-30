@@ -18,6 +18,7 @@ import com.synrgy.wefly.data.api.transaction.Passenger
 import com.synrgy.wefly.data.api.transaction.TransactionDetailRequest
 import com.synrgy.wefly.data.api.transaction.TransactionRequest
 import com.synrgy.wefly.databinding.FragmentHomepageBinding
+import com.synrgy.wefly.ui.transaction.TransactionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -26,6 +27,7 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
     private lateinit var binding: FragmentHomepageBinding
 
     private val viewModel: HomeViewModel by viewModels()
+    private val transactionModel: TransactionViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -87,7 +89,7 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
                     orderer = orderer,
                     transactionDetails = arrayListOf(transactionDetails)
                 )
-                viewModel.transaction(transactionRequest)
+                transactionModel.transaction(transactionRequest)
             }
         }
     }

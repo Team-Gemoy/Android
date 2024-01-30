@@ -3,17 +3,13 @@ package com.synrgy.wefly.ui.homepage
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.HeaderResponse
 import com.synrgy.wefly.data.api.airport.list.AirportListResponse
-import com.synrgy.wefly.data.api.transaction.TransactionListResponse
-import com.synrgy.wefly.data.api.transaction.TransactionRequest
 import com.synrgy.wefly.data.repository.AirportRepositoryImpl
 import com.synrgy.wefly.data.repository.PreferenceRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -30,11 +26,6 @@ class HomeViewModel @Inject constructor(
 
     val airportList: StateFlow<ApiResult<AirportListResponse>> = _airportList
         .stateIn(viewModelScope, SharingStarted.Lazily, ApiResult.Loading())
-
-    private val _transactionFLow: MutableStateFlow<ApiResult<HeaderResponse<TransactionListResponse>>> =
-        MutableStateFlow(ApiResult.Loading())
-    val transactionFlow: StateFlow<ApiResult<HeaderResponse<TransactionListResponse>>> = _transactionFLow.asStateFlow()
-
 
     val token = prefRepo.getToken()
 
@@ -55,11 +46,5 @@ class HomeViewModel @Inject constructor(
                     _airportList.value = it
                 }
         }
-
-    fun transaction(transactionRequest: TransactionRequest) = viewModelScope.launch {
-        repo.testTransaction(transactionRequest).collect(){
-            _transactionFLow.value = it
-        }
-    }
 
 }

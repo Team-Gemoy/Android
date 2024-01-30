@@ -7,10 +7,15 @@ import com.synrgy.wefly.data.api.flight.FlightContent
 import com.synrgy.wefly.databinding.ItemFlightBinding
 
 class FlightAdapter(
-    private var listItem: List<FlightContent>
+    private var listItem: List<FlightContent>,
+    private val listener: FlightListener
 ): RecyclerView.Adapter<FlightAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(val binding: ItemFlightBinding) : RecyclerView.ViewHolder(binding.root)
+
+    interface FlightListener {
+        fun onItemClick(item: FlightContent)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder =
         ItemViewHolder(
@@ -28,7 +33,9 @@ class FlightAdapter(
             tvDepartCity.text = itemPosition.flight.arrivalAirport?.city
             tvDepartTime.text = itemPosition.flight.departureTime
             tvArrivalCity.text = itemPosition.flight.arrivalAirport?.city
-            tvDepartTime.text = itemPosition.flight.arrivalTime
+            tvArrivalTime.text = itemPosition.flight.arrivalTime
+            tvPrice.text = itemPosition.flight.basePrice.toString()
+            root.setOnClickListener { listener.onItemClick(itemPosition) }
         }
     }
 }
