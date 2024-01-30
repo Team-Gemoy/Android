@@ -4,14 +4,8 @@ import com.synrgy.wefly.data.api.airport.list.ContentAirport
 import com.synrgy.wefly.data.api.airport.list.PageAble
 
 data class FlightListResponse(
-    val code: Int,
-    val data: FlightData
-)
-
-data class FlightData(
     val content: ArrayList<FlightContent>,
     val pageable: PageAble,
-    val message: String
 )
 
 data class FlightContent(
@@ -29,11 +23,12 @@ data class FlightCard(
     val deletedDate: String?,
     val updatedDate: String?,
     val id: Int,
-    val departureAirport: ContentAirport,
-    val arrivalAirport: ContentAirport,
-    val airplane: Airplane,
-    val departureDate: String,
-    val arrivalDate: String,
+    val flightNumber: String?,
+    val departureAirport: ContentAirport?,
+    val arrivalAirport: ContentAirport?,
+    val airplane: Airplane?,
+    val departureDate: String?,
+    val arrivalDate: String?,
     val departureTime: String?,
     val arrivalTime: String?,
     val basePrice: Int

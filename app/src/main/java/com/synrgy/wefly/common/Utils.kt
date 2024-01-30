@@ -55,7 +55,7 @@ fun showDatePickerDialog(context: Context, birth: TextView) {
     datePickerDialog.show()
 }
 
-fun spinnerAdapter(array: Array<*>, spinner: Spinner, context: Context, onItemSelected: (position: Int) -> Unit){
+fun spinnerAdapter(array: Array<*>, spinner: Spinner, context: Context, onItemSelected: (position: Int) -> Unit?={}){
     val arrayAdapter = ArrayAdapter(context, R.layout.simple_spinner_dropdown_item, array)
     spinner.adapter = arrayAdapter
     spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

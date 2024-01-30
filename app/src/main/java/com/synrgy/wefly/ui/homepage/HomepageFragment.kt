@@ -13,6 +13,10 @@ import com.synrgy.wefly.common.repeatCollectionOnCreated
 import com.synrgy.wefly.common.showDatePickerDialog
 import com.synrgy.wefly.common.spinnerAdapter
 import com.synrgy.wefly.data.api.ApiResult
+import com.synrgy.wefly.data.api.transaction.Orderer
+import com.synrgy.wefly.data.api.transaction.Passenger
+import com.synrgy.wefly.data.api.transaction.TransactionDetailRequest
+import com.synrgy.wefly.data.api.transaction.TransactionRequest
 import com.synrgy.wefly.databinding.FragmentHomepageBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -51,12 +55,39 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
                 findNavController().navigate(action)
             }
             val passengerArray = arrayOf(1, 2, 3, 4, 5)
-            homeSpinnerAdapter(array = passengerArray, spinner = spPassenger) {
-                Log.d("Neotica", "spinner ${passengerArray[it]}")
-            }
+            homeSpinnerAdapter(array = passengerArray, spinner = spPassenger)
             val classArray = arrayOf("ECONOMY", "BUSINESS")
-            homeSpinnerAdapter(classArray, spSeatClass) {
-                Log.d("Neotica", "spinner ${classArray[it]}")
+            homeSpinnerAdapter(classArray, spSeatClass)
+
+            ivNotification.setOnClickListener {
+                val passengers = Passenger(
+                    id = 2,
+                    firstName = "martin",
+                    lastName = "shit",
+                    dateOfBirth = "11-06-2000",
+                    nationality = "Indonesia"
+                )
+                val passengerArray = arrayListOf(passengers)
+                val orderer = Orderer(
+                    createdDate = "",
+                    deletedDate = "",
+                    updatedDate= "",
+                    id = 2,
+                    firstName = "firstname",
+                    lastName = "lastname",
+                    phoneNumber = "324234",
+                    email = "ex@gmail.com"
+                )
+                val transactionDetails = TransactionDetailRequest(2)
+                val transactionRequest = TransactionRequest(
+                    adultPassenger = 2,
+                    childPassenger = 2,
+                    infantPassenger = 2,
+                    passengers = passengerArray,
+                    orderer = orderer,
+                    transactionDetails = arrayListOf(transactionDetails)
+                )
+                viewModel.transaction(transactionRequest)
             }
         }
     }
@@ -84,17 +115,13 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
     }
 
     private fun departure(city: Array<String>){
-        homeSpinnerAdapter(city, binding.spFlightFrom){
-            Log.d("Neotica", "spinner ${city[it]}")
-        }
+        homeSpinnerAdapter(city, binding.spFlightFrom)
     }
     private fun arrival(city: Array<String>){
-        homeSpinnerAdapter(city, binding.spFlightTo) {
-            Log.d("Neotica", "spinner ${city[it]}")
-        }
+        homeSpinnerAdapter(city, binding.spFlightTo)
     }
 
-    private fun homeSpinnerAdapter(array: Array<out Any>, spinner: Spinner, onItemSelected: (position: Int) -> Unit){
+    private fun homeSpinnerAdapter(array: Array<out Any>, spinner: Spinner, onItemSelected: (position: Int) -> Unit = {}){
         spinnerAdapter(array = array, spinner = spinner, context = requireContext(), onItemSelected = onItemSelected)
     }
 

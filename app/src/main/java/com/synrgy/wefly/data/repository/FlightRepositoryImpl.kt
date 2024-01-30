@@ -2,6 +2,7 @@ package com.synrgy.wefly.data.repository
 
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.ApiService
+import com.synrgy.wefly.data.api.HeaderResponse
 import com.synrgy.wefly.data.api.flight.FlightListResponse
 import com.synrgy.wefly.domain.FlightRepository
 import kotlinx.coroutines.flow.Flow
@@ -19,7 +20,7 @@ class FlightRepositoryImpl @Inject constructor(
         departDate: String,
         seatClass: String,
         numberOfPassenger: Int
-    ): Flow<ApiResult<FlightListResponse>> = flow {
+    ): Flow<ApiResult<HeaderResponse<FlightListResponse>>> = flow {
         emit(ApiResult.Loading())
         val response = apiService.getFlight(
             departureAirportId = departureAirportId,

@@ -8,6 +8,8 @@ import com.synrgy.wefly.data.api.login.LoginRequest
 import com.synrgy.wefly.data.api.login.LoginResponse
 import com.synrgy.wefly.data.api.register.RegisterRequest
 import com.synrgy.wefly.data.api.register.RegisterResponse
+import com.synrgy.wefly.data.api.transaction.TransactionListResponse
+import com.synrgy.wefly.data.api.transaction.TransactionRequest
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -36,5 +38,11 @@ interface ApiService {
         @Query("departDate") departDate: String,
         @Query("seatClass") seatClass: String,
         @Query("numberOfPassenger") numberOfPassenger: Int
-    ): FlightListResponse
+    ): HeaderResponse<FlightListResponse>
+
+    @POST("transaction/save")
+    fun saveTransaction(
+        //@Header("")
+        @Body transactionRequest: TransactionRequest
+    ): Call<HeaderResponse<TransactionListResponse>>
 }
