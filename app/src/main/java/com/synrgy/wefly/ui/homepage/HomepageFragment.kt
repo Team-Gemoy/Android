@@ -13,12 +13,7 @@ import com.synrgy.wefly.common.repeatCollectionOnCreated
 import com.synrgy.wefly.common.showDatePickerDialog
 import com.synrgy.wefly.common.spinnerAdapter
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.transaction.Orderer
-import com.synrgy.wefly.data.api.transaction.Passenger
-import com.synrgy.wefly.data.api.transaction.TransactionDetailRequest
-import com.synrgy.wefly.data.api.transaction.TransactionRequest
 import com.synrgy.wefly.databinding.FragmentHomepageBinding
-import com.synrgy.wefly.ui.transaction.TransactionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,7 +22,6 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
     private lateinit var binding: FragmentHomepageBinding
 
     private val viewModel: HomeViewModel by viewModels()
-    private val transactionModel: TransactionViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,37 +54,6 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
             homeSpinnerAdapter(array = passengerArray, spinner = spPassenger)
             val classArray = arrayOf("ECONOMY", "BUSINESS")
             homeSpinnerAdapter(classArray, spSeatClass)
-
-            ivNotification.setOnClickListener {
-                val passengers = Passenger(
-                    id = 2,
-                    firstName = "martin",
-                    lastName = "shit",
-                    dateOfBirth = "11-06-2000",
-                    nationality = "Indonesia"
-                )
-                val passengerArray = arrayListOf(passengers)
-                val orderer = Orderer(
-                    createdDate = "",
-                    deletedDate = "",
-                    updatedDate= "",
-                    id = 2,
-                    firstName = "firstname",
-                    lastName = "lastname",
-                    phoneNumber = "324234",
-                    email = "ex@gmail.com"
-                )
-                val transactionDetails = TransactionDetailRequest(2)
-                val transactionRequest = TransactionRequest(
-                    adultPassenger = 2,
-                    childPassenger = 2,
-                    infantPassenger = 2,
-                    passengers = passengerArray,
-                    orderer = orderer,
-                    transactionDetails = arrayListOf(transactionDetails)
-                )
-                transactionModel.transaction(transactionRequest)
-            }
         }
     }
 
