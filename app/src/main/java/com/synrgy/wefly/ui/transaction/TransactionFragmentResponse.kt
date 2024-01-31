@@ -2,36 +2,39 @@ package com.synrgy.wefly.ui.transaction
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.synrgy.wefly.R
 import com.synrgy.wefly.common.showDatePickerDialog
-import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.transaction.Orderer
 import com.synrgy.wefly.data.api.transaction.Passenger
 import com.synrgy.wefly.data.api.transaction.TransactionDetailRequest
 import com.synrgy.wefly.data.api.transaction.TransactionRequest
-import com.synrgy.wefly.databinding.FragmentTransactionBinding
+import com.synrgy.wefly.databinding.FragmentTransactionResponseBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class TransactionFragment : Fragment(R.layout.fragment_transaction) {
-    private lateinit var binding: FragmentTransactionBinding
+class TransactionFragmentResponse : Fragment(R.layout.fragment_transaction_response) {
+    private lateinit var binding: FragmentTransactionResponseBinding
 
     private val viewModel: TransactionViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentTransactionBinding.bind(view)
+        binding = FragmentTransactionResponseBinding.bind(view)
 
         setupUI()
     }
 
     private fun setupUI() {
         with(binding) {
+          /*  val args = TransactionFragmentResponseArgs.fromBundle(arguments as Bundle)
+            etFirstName.hint = args.passengers.firstName*/
+            etLastName.hint = "dfsdf"
+
+
             etDateOfBirthPassenger.setOnClickListener {
                 showDatePickerDialog(requireContext(), etDateOfBirthPassenger)
             }
@@ -50,7 +53,7 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                     dateOfBirth = etDateOfBirthPassenger.text.toString(),
                     nationality = etNationalityPassenger.text.toString()
                 )
-                val passengerArray = arrayListOf(passengersFilled)
+                val passengerArray = arrayListOf(passengers)
                 val orderer = Orderer(
                     createdDate = "",
                     deletedDate = "",
@@ -77,29 +80,7 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
 
     private fun observeStateFlow() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.transactionFlow.collect {
-                when(it) {
-                    is ApiResult.Loading -> binding.pbMain.visibility = View.VISIBLE
-                    is ApiResult.Success -> {
-                        binding.pbMain.visibility = View.GONE
 
-                        val result = it.data?.data?.passenger
-                        Toast.makeText(context, "${result?.get(0)?.firstName}", Toast.LENGTH_SHORT).show()
-                       /* val action = TransactionFragmentDirections
-                            .actionTransactionFragmentToTransactionFragmentResponse(
-                                passengers = result?.get(0) ?: Passenger(
-                                    id = 2,
-                                    firstName = "nothing",
-                                    lastName = "shit",
-                                    dateOfBirth = "11-06-2000",
-                                    nationality = "Indonesia"
-                                )
-                            )
-                        findNavController().navigate(action)*/
-                    }
-                    is ApiResult.Error -> binding.pbMain.visibility = View.GONE
-                }
-            }
         }
     }
 

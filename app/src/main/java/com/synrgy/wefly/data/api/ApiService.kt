@@ -1,5 +1,6 @@
 package com.synrgy.wefly.data.api
 
+import com.synrgy.wefly.common.Constant.BEARER_TOKEN
 import com.synrgy.wefly.data.api.airport.list.AirportListResponse
 import com.synrgy.wefly.data.api.flight.FlightListResponse
 import com.synrgy.wefly.data.api.forgetpassword.ForgotPassRequest
@@ -13,6 +14,7 @@ import com.synrgy.wefly.data.api.transaction.TransactionRequest
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -42,7 +44,7 @@ interface ApiService {
 
     @POST("transaction/save")
     fun saveTransaction(
-        //@Header("")
-        @Body transactionRequest: TransactionRequest
+        @Body transactionRequest: TransactionRequest,
+        @Header("Authorization") header: String? = BEARER_TOKEN
     ): Call<HeaderResponse<TransactionListResponse>>
 }

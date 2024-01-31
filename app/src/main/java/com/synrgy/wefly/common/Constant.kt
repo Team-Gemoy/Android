@@ -1,0 +1,6 @@
+package com.synrgy.wefly.common
+
+object Constant {
+    const val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsib2F1dGgyLXJlc291cmNlIl0sImZ1bGxfbmFtZSI6Im1hcnRpbiIsInVzZXJfbmFtZSI6ImxhZXR1emdAZ21haWwuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImlkIjo2LCJleHAiOjE3MDY3MjMzNzcsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiJlZUY1V2dzR0w3aGloNkVrRF9zV0R0bU1aZmsiLCJjbGllbnRfaWQiOiJteS1jbGllbnQtd2ViIn0.YQ9Moun2z9bZ5MBnE_cF0eEUN-JEcF4N4QsaITX5_XU" //PreferenceRepositoryImpl().getToken()
+    const val BEARER_TOKEN = "Bearer $token"
+}

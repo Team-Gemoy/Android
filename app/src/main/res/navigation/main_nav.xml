@@ -68,5 +68,24 @@
         <argument
             android:name="passenger"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_flightFragment_to_transactionFragment"
+            app:destination="@id/transactionFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/transactionFragment"
+        android:name="com.synrgy.wefly.ui.transaction.TransactionFragment"
+        android:label="TransactionFragment" >
+      <!--  <action
+            android:id="@+id/action_transactionFragment_to_transactionFragmentResponse"
+            app:destination="@id/transactionFragmentResponse" />-->
+    </fragment>
+<!--    <fragment
+        android:id="@+id/transactionFragmentResponse"
+        android:name="com.synrgy.wefly.ui.transaction.TransactionFragmentResponse"
+        android:label="TransactionFragmentResponse" >
+        <argument
+            android:name="passengers"
+            app:argType="com.synrgy.wefly.data.api.transaction.Passenger" />
+    </fragment>-->
 </navigation>
