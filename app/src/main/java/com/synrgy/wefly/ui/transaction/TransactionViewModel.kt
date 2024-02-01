@@ -27,6 +27,11 @@ class TransactionViewModel @Inject constructor(
         MutableStateFlow(ApiResult.Loading())
     val transactionFlow: StateFlow<ApiResult<HeaderResponse<TransactionListResponse>>> = _transactionFLow.asStateFlow()
 
+    private val _getId: MutableStateFlow<ApiResult<HeaderResponse<TransactionListResponse>>> =
+        MutableStateFlow(ApiResult.Loading())
+    val getId: StateFlow<ApiResult<HeaderResponse<TransactionListResponse>>> = _getId.asStateFlow()
+
+
     val token = prefRepo.getToken()
         .stateIn(
             scope = viewModelScope,
@@ -34,17 +39,20 @@ class TransactionViewModel @Inject constructor(
             initialValue = PreferenceDefaults.TOKEN,
         )
 
-    fun setToken(token: String) {
-        viewModelScope.launch {
-            prefRepo.setToken(token)
-        }
-    }
-
-    fun transaction(transactionRequest: TransactionRequest) = viewModelScope.launch {
+    fun postTransaction(transactionRequest: TransactionRequest) = viewModelScope.launch {
         prefRepo.getToken().collect {token ->
             repo.saveTransaction(transactionRequest, header = "Bearer $token").collect(){
                 _transactionFLow.value = it
             }
         }
+    }
+
+    fun getTransaction(id: String) = viewModelScope.launch {
+        prefRepo.getToken().collect {token ->
+            repo.getTransaction(id = id, header = "Bearer $token").collect(){
+                _getId.value = it
+            }
+        }
+
     }
 }

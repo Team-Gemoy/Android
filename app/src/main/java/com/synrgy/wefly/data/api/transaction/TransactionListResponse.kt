@@ -7,7 +7,7 @@ data class TransactionListResponse (
     val deletedDate: String?,
     val updatedDate: String?,
     val id: Int,
-    val passenger: ArrayList<Passenger>,
+    val passengers: ArrayList<Passenger>,
     val transactionDetails: ArrayList<TransactionDetailsListResponse>,
     val orderer: Orderer,
     val adultPassenger: Int,

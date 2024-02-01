@@ -23,4 +23,10 @@ class TransactionRepositoryImpl @Inject constructor(
         }.catch {
             emit(ApiResult.Error(it.message ?: "Register error"))
         }
+
+    override fun getTransaction(id: String, header: String): Flow<ApiResult<HeaderResponse<TransactionListResponse>>> = flow {
+        emit(ApiResult.Loading())
+        val response = apiService.getTransactionId(id = id, header = header)
+        emit(ApiResult.Success(response))
+    }.catch { emit(ApiResult.Error(it.message ?: "Transaction Error")) }
 }

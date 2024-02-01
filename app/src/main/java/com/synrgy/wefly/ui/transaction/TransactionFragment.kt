@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.common.showDatePickerDialog
 import com.synrgy.wefly.data.api.ApiResult
@@ -36,6 +37,7 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                 showDatePickerDialog(requireContext(), etDateOfBirthPassenger)
             }
             btnOrder.setOnClickListener {
+                observeStateFlow()
                 val passengersFilled = Passenger(
                     id = 2,
                     firstName = "martin",
@@ -70,7 +72,7 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                     orderer = orderer,
                     transactionDetails = arrayListOf(transactionDetails)
                 )
-                viewModel.transaction(transactionRequest)
+                viewModel.postTransaction(transactionRequest)
             }
         }
     }
@@ -83,20 +85,12 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                     is ApiResult.Success -> {
                         binding.pbMain.visibility = View.GONE
 
-                        val result = it.data?.data?.passenger
-                        val getId = it.data?.data?.id
-                        Toast.makeText(context, "${result?.get(0)?.firstName}", Toast.LENGTH_SHORT).show()
-                       /* val action = TransactionFragmentDirections
-                            .actionTransactionFragmentToTransactionFragmentResponse(
-                                passengers = result?.get(0) ?: Passenger(
-                                    id = 2,
-                                    firstName = "nothing",
-                                    lastName = "shit",
-                                    dateOfBirth = "11-06-2000",
-                                    nationality = "Indonesia"
-                                )
-                            )
-                        findNavController().navigate(action)*/
+                        val result = it.data?.data?.passengers
+                        val getId = it.data?.data?.id.toString()
+                        Toast.makeText(context, getId, Toast.LENGTH_SHORT).show()
+                        val action = TransactionFragmentDirections
+                            .actionTransactionFragmentToTransactionFragmentResponse(transactionId = getId)
+                        findNavController().navigate(action)
                     }
                     is ApiResult.Error -> binding.pbMain.visibility = View.GONE
                 }

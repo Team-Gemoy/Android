@@ -76,16 +76,19 @@
         android:id="@+id/transactionFragment"
         android:name="com.synrgy.wefly.ui.transaction.TransactionFragment"
         android:label="TransactionFragment" >
-      <!--  <action
+        <action
             android:id="@+id/action_transactionFragment_to_transactionFragmentResponse"
-            app:destination="@id/transactionFragmentResponse" />-->
+            app:destination="@id/transactionFragmentResponse" />
+        <action
+            android:id="@+id/action_transactionFragment_to_transactionFragmentResponse2"
+            app:destination="@id/transactionFragmentResponse" />
     </fragment>
-<!--    <fragment
+    <fragment
         android:id="@+id/transactionFragmentResponse"
         android:name="com.synrgy.wefly.ui.transaction.TransactionFragmentResponse"
         android:label="TransactionFragmentResponse" >
         <argument
-            android:name="passengers"
-            app:argType="com.synrgy.wefly.data.api.transaction.Passenger" />
-    </fragment>-->
+            android:name="transactionId"
+            app:argType="string" />
+    </fragment>
 </navigation>
