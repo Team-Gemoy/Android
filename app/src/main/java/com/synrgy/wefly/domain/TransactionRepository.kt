@@ -7,6 +7,6 @@ import com.synrgy.wefly.data.api.transaction.TransactionRequest
 import kotlinx.coroutines.flow.Flow
 
 interface TransactionRepository {
-    fun saveTransaction(transactionRequest: TransactionRequest):
+    fun saveTransaction(transactionRequest: TransactionRequest, header: String):
             Flow<ApiResult<HeaderResponse<TransactionListResponse>>>
 }

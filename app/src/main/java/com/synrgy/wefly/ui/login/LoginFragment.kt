@@ -66,19 +66,19 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         with(binding) {
             when (status) {
                 is ApiResult.Loading -> {
-                   // pbLogin.visibility = View.VISIBLE
+                    pbMain.visibility = View.VISIBLE
                     Log.d("neotica", "loading")
                 }
 
                 is ApiResult.Error -> {
-                  //  pbLogin.visibility = View.GONE
+                    pbMain.visibility = View.GONE
                     val error = status.errorMessage
                     Log.d("neotica", "$error")
                     Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
                 }
 
                 is ApiResult.Success -> {
-                 //   pbLogin.visibility = View.GONE
+                    pbMain.visibility = View.GONE
                     val head = status.data?.code.toString()
                     val getToken = status.data?.accessToken.toString()
                     viewModel.setToken(getToken)

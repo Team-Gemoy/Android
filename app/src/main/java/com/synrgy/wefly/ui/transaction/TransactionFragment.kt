@@ -84,6 +84,7 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                         binding.pbMain.visibility = View.GONE
 
                         val result = it.data?.data?.passenger
+                        val getId = it.data?.data?.id
                         Toast.makeText(context, "${result?.get(0)?.firstName}", Toast.LENGTH_SHORT).show()
                        /* val action = TransactionFragmentDirections
                             .actionTransactionFragmentToTransactionFragmentResponse(

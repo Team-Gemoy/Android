@@ -41,8 +41,10 @@ class TransactionViewModel @Inject constructor(
     }
 
     fun transaction(transactionRequest: TransactionRequest) = viewModelScope.launch {
-        repo.saveTransaction(transactionRequest).collect(){
-            _transactionFLow.value = it
+        prefRepo.getToken().collect {token ->
+            repo.saveTransaction(transactionRequest, header = "Bearer $token").collect(){
+                _transactionFLow.value = it
+            }
         }
     }
 }
