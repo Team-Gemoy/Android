@@ -6,9 +6,10 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.synrgy.wefly.R
-import com.synrgy.wefly.common.showDatePickerDialog
 import com.synrgy.wefly.data.api.ApiResult
+import com.synrgy.wefly.data.api.transaction.Passenger
 import com.synrgy.wefly.databinding.FragmentTransactionResponseBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -31,13 +32,20 @@ class TransactionFragmentResponse : Fragment(R.layout.fragment_transaction_respo
         with(binding) {
             val args = TransactionFragmentResponseArgs.fromBundle(arguments as Bundle)
             viewModel.getTransaction(args.transactionId)
-            /*etFirstName.setText(args.transactionId)
-            etLastName.setText("ddsfs")*/
+        }
+    }
 
+    private fun updateRecyclerView(list: List<Passenger>) {
+        with(binding) {
+            val layoutManager = LinearLayoutManager(context)
+            val recView = rvPassenger
+            val adapter = PassengerAdapter(listItem = list, object : PassengerAdapter.PassengerListener {
+                override fun onItemClick(item: Passenger) {
 
-            etDateOfBirthPassenger.setOnClickListener {
-                showDatePickerDialog(requireContext(), etDateOfBirthPassenger)
-            }
+                }
+            })
+            recView.layoutManager = layoutManager
+            recView.adapter = adapter
         }
     }
 
@@ -49,10 +57,10 @@ class TransactionFragmentResponse : Fragment(R.layout.fragment_transaction_respo
                     is ApiResult.Success -> {
                         with(binding){
                             pbMain.visibility = View.GONE
-                            val data = it.data?.data?.passengers?.get(0)?.firstName
+                            val data = it.data?.data?.passengers
                             Log.d("neotica", "observeStateFlow: $data")
-                            etFirstName.setText(data)
-                            etLastName.setText("ddsfs")
+                            it.data?.data?.passengers?.let { it1 -> updateRecyclerView(list = it1) }
+
                             btnOrder.setOnClickListener {}
                         }
                     }

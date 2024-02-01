@@ -52,7 +52,7 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                     dateOfBirth = etDateOfBirthPassenger.text.toString(),
                     nationality = etNationalityPassenger.text.toString()
                 )
-                val passengerArray = arrayListOf(passengersFilled)
+                val passengerArray = arrayListOf(passengersFilled, passengersFilled)
                 val orderer = Orderer(
                     createdDate = "",
                     deletedDate = "",
