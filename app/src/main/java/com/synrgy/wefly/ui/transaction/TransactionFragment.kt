@@ -1,6 +1,7 @@
 package com.synrgy.wefly.ui.transaction
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -88,6 +89,7 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
 
 
                             val getId = it.data?.data?.id.toString()
+                            Log.d("neotica", "observeStateFlow: ${it.data}")
                             Toast.makeText(context, getId, Toast.LENGTH_SHORT).show()
                             val action = TransactionFragmentDirections
                                 .actionTransactionFragmentToTransactionFragmentResponse(transactionId = getId)
@@ -99,5 +101,4 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
             }
         }
     }
-
 }

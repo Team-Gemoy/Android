@@ -31,11 +31,13 @@ class FlightViewModel @Inject constructor(
     fun getFlight(
         departDate: String,
         seatClass: String,
-        numberOfPassenger: Int
+        numberOfPassenger: Int,
+        departureAirportId: Int,
+        arrivalAirportId: Int,
     ) = viewModelScope.launch {
         repo.getFlight(
-            departureAirportId = 2,
-            arrivalAirportId = 1,
+            departureAirportId = departureAirportId,
+            arrivalAirportId = arrivalAirportId,
             departDate = departDate,
             seatClass = seatClass,
             numberOfPassenger = numberOfPassenger

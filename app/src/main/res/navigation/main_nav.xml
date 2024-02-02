@@ -68,6 +68,12 @@
         <argument
             android:name="passenger"
             app:argType="integer" />
+        <argument
+            android:name="airportDepart"
+            app:argType="integer" />
+        <argument
+            android:name="airportArrival"
+            app:argType="integer" />
         <action
             android:id="@+id/action_flightFragment_to_transactionFragment"
             app:destination="@id/transactionFragment" />

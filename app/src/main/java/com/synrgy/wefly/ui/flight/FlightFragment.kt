@@ -36,7 +36,9 @@ class FlightFragment : Fragment(R.layout.fragment_flight) {
             viewModel.getFlight(
                 departDate = "26-01-2024",
                 seatClass = args.seatClass,
-                numberOfPassenger = args.passenger
+                numberOfPassenger = args.passenger,
+                departureAirportId = 2,
+                arrivalAirportId = 1
             )
         }
     }

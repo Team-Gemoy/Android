@@ -32,7 +32,7 @@ class TransactionFragmentResponse : Fragment(R.layout.fragment_transaction_respo
     private fun setupUI() {
         with(binding) {
             val args = TransactionFragmentResponseArgs.fromBundle(arguments as Bundle)
-            viewModel.getTransaction(args.transactionId)
+            viewModel.getTransaction("21"/*args.transactionId*/)
         }
     }
 

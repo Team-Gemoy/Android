@@ -28,11 +28,12 @@ class FlightAdapter(
         val context = holder.itemView.context
         holder.binding.apply {
             val itemPosition = listItem[position]
+            tvAirportId.text = itemPosition.flight.arrivalAirport?.id.toString()
             tvAirline.text = itemPosition.flight.airplane?.airline?.name
             tvSeatClass.text = itemPosition.seatClass
-            tvDepartCity.text = itemPosition.flight.arrivalAirport?.city
+            tvDepartCity.text = itemPosition.flight.departureAirport?.city
             tvDepartTime.text = itemPosition.flight.departureTime
-            tvArrivalCity.text = itemPosition.flight.arrivalAirport?.city
+            tvArrivalCity.text = itemPosition.flight.departureAirport?.city
             tvArrivalTime.text = itemPosition.flight.arrivalTime
             tvPrice.text = itemPosition.flight.basePrice.toString()
             root.setOnClickListener { listener.onItemClick(itemPosition) }

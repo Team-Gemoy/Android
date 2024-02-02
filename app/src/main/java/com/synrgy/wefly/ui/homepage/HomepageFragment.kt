@@ -46,7 +46,9 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
             btnSearchFlight.setOnClickListener {
                 val action = HomepageFragmentDirections.actionHomepageFragmentToFlightFragment(
                     seatClass = spSeatClass.selectedItem.toString(),
-                    passenger = spPassenger.selectedItem.toString().toInt()
+                    passenger = spPassenger.selectedItem.toString().toInt(),
+                    airportDepart = departId.text.toString().toInt(),
+                    airportArrival = arriveId.text.toString().toInt()
                 )
                 findNavController().navigate(action)
             }
@@ -61,13 +63,19 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.airportList.collect {
                 val content = it.data?.data?.content
+                val res = it.data
                 when(it){
                     is ApiResult.Loading -> binding.pbHome.visibility = View.VISIBLE
                     is ApiResult.Success -> {
                         binding.pbHome.visibility = View.GONE
                         val city = content?.map { it.city }?.toTypedArray() ?: emptyArray()
-                        departure(city)
-                        arrival(city)
+                        val cityId = content?.map { it.id.toString() }?.toTypedArray() ?: emptyArray()
+                        departure(city) {
+                            binding.departId.text = cityId[it]
+                        }
+                        arrival(city) {
+                            binding.arriveId.text = cityId[it]
+                        }
                         Log.d("neotica", "observeStateFlow: $content")
                     }
                     is ApiResult.Error -> {
@@ -79,11 +87,11 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
         }
     }
 
-    private fun departure(city: Array<String>){
-        homeSpinnerAdapter(city, binding.spFlightFrom)
+    private fun departure(city: Array<String>, onItemSelected: (position: Int) -> Unit = {}){
+        homeSpinnerAdapter(city, binding.spFlightFrom, onItemSelected = onItemSelected)
     }
-    private fun arrival(city: Array<String>){
-        homeSpinnerAdapter(city, binding.spFlightTo)
+    private fun arrival(city: Array<String>, onItemSelected: (position: Int) -> Unit = {}){
+        homeSpinnerAdapter(city, binding.spFlightTo, onItemSelected = onItemSelected)
     }
 
     private fun homeSpinnerAdapter(array: Array<out Any>, spinner: Spinner, onItemSelected: (position: Int) -> Unit = {}){
