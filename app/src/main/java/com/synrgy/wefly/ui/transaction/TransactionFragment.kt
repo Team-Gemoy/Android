@@ -83,14 +83,16 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                 when(it) {
                     is ApiResult.Loading -> binding.pbMain.visibility = View.VISIBLE
                     is ApiResult.Success -> {
-                        binding.pbMain.visibility = View.GONE
+                        with(binding) {
+                            binding.pbMain.visibility = View.GONE
 
-                        val result = it.data?.data?.passengers
-                        val getId = it.data?.data?.id.toString()
-                        Toast.makeText(context, getId, Toast.LENGTH_SHORT).show()
-                        val action = TransactionFragmentDirections
-                            .actionTransactionFragmentToTransactionFragmentResponse(transactionId = getId)
-                        findNavController().navigate(action)
+
+                            val getId = it.data?.data?.id.toString()
+                            Toast.makeText(context, getId, Toast.LENGTH_SHORT).show()
+                            val action = TransactionFragmentDirections
+                                .actionTransactionFragmentToTransactionFragmentResponse(transactionId = getId)
+                            findNavController().navigate(action)
+                        }
                     }
                     is ApiResult.Error -> binding.pbMain.visibility = View.GONE
                 }

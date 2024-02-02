@@ -1,4 +1,4 @@
-package com.synrgy.wefly.ui.transaction
+package com.synrgy.wefly.ui.transaction.response
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.synrgy.wefly.data.api.transaction.Passenger
 import com.synrgy.wefly.databinding.ItemPassengerBinding
 
-class PassengerAdapter(
+class PassengerResponseAdapter(
     private var listItem: List<Passenger>,
     private val listener: PassengerListener
-): RecyclerView.Adapter<PassengerAdapter.ItemViewHolder>() {
+): RecyclerView.Adapter<PassengerResponseAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(val binding: ItemPassengerBinding) : RecyclerView.ViewHolder(binding.root)
 

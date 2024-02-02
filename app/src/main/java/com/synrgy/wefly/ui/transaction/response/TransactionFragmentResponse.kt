@@ -1,4 +1,4 @@
-package com.synrgy.wefly.ui.transaction
+package com.synrgy.wefly.ui.transaction.response
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,7 @@ import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.transaction.Passenger
 import com.synrgy.wefly.databinding.FragmentTransactionResponseBinding
+import com.synrgy.wefly.ui.transaction.TransactionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -39,7 +40,7 @@ class TransactionFragmentResponse : Fragment(R.layout.fragment_transaction_respo
         with(binding) {
             val layoutManager = LinearLayoutManager(context)
             val recView = rvPassenger
-            val adapter = PassengerAdapter(listItem = list, object : PassengerAdapter.PassengerListener {
+            val adapter = PassengerResponseAdapter(listItem = list, object : PassengerResponseAdapter.PassengerListener {
                 override fun onItemClick(item: Passenger) {
 
                 }

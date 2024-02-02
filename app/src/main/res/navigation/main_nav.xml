@@ -85,7 +85,7 @@
     </fragment>
     <fragment
         android:id="@+id/transactionFragmentResponse"
-        android:name="com.synrgy.wefly.ui.transaction.TransactionFragmentResponse"
+        android:name="com.synrgy.wefly.ui.transaction.response.TransactionFragmentResponse"
         android:label="TransactionFragmentResponse" >
         <argument
             android:name="transactionId"
