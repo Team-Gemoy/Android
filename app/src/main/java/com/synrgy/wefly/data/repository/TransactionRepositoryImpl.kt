@@ -15,18 +15,18 @@ import javax.inject.Inject
 class TransactionRepositoryImpl @Inject constructor(
     private var apiService: ApiService
 ): TransactionRepository {
-    override fun saveTransaction(transactionRequest: TransactionRequest, header: String): Flow<ApiResult<HeaderResponse<TransactionListResponse>>> =
+    override fun saveTransaction(transactionRequest: TransactionRequest): Flow<ApiResult<HeaderResponse<TransactionListResponse>>> =
         flow {
             emit(ApiResult.Loading())
-            val request = apiService.saveTransaction(transactionRequest = transactionRequest, header = header).await()
+            val request = apiService.saveTransaction(transactionRequest = transactionRequest).await()
             emit(ApiResult.Success(request))
         }.catch {
             emit(ApiResult.Error(it.message ?: "Register error"))
         }
 
-    override fun getTransaction(id: String, header: String): Flow<ApiResult<HeaderResponse<TransactionListResponse>>> = flow {
+    override fun getTransaction(id: String): Flow<ApiResult<HeaderResponse<TransactionListResponse>>> = flow {
         emit(ApiResult.Loading())
-        val response = apiService.getTransactionId(id = id, header = header)
+        val response = apiService.getTransactionId(id = id)
         emit(ApiResult.Success(response))
     }.catch { emit(ApiResult.Error(it.message ?: "Transaction Error")) }
 }

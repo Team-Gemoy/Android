@@ -98,13 +98,11 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
         spinnerAdapter(array = array, spinner = spinner, context = requireContext(), onItemSelected = onItemSelected)
     }
 
-    private suspend fun tokenRan () {
-        viewModel.token.collect {
-            if (it.isEmpty()) {
-                gotoLogin()
-            }
-            Log.d("neotica", "token: $it")
+    private fun tokenRan () {
+        if (viewModel.token.isEmpty()) {
+            gotoLogin()
         }
+        Log.d("neotica", "token: ${viewModel.token}")
     }
 
     private fun gotoLogin() {

@@ -5,9 +5,6 @@ import com.synrgy.wefly.data.api.ApiService
 import com.synrgy.wefly.data.api.HeaderResponse
 import com.synrgy.wefly.data.api.flight.FlightListResponse
 import com.synrgy.wefly.domain.FlightRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class FlightRepositoryImpl @Inject constructor(
@@ -20,18 +17,18 @@ class FlightRepositoryImpl @Inject constructor(
         departDate: String,
         seatClass: String,
         numberOfPassenger: Int
-    ): Flow<ApiResult<HeaderResponse<FlightListResponse>>> = flow {
-        emit(ApiResult.Loading())
-        val response = apiService.getFlight(
-            departureAirportId = departureAirportId,
-            arrivalAirportId = arrivalAirportId,
-            departDate = departDate,
-            seatClass = seatClass,
-            numberOfPassenger = numberOfPassenger
-        )
-        emit(ApiResult.Success(response))
-    }.catch {
-        emit(ApiResult.Error(it.message?: "Error Loading Flight list"))
+    ): ApiResult<HeaderResponse<FlightListResponse>> {
+        return try {
+            val response = apiService.getFlight(
+                departureAirportId = departureAirportId,
+                arrivalAirportId = arrivalAirportId,
+                departDate = departDate,
+                seatClass = seatClass,
+                numberOfPassenger = numberOfPassenger
+            )
+            (ApiResult.Success(response))
+        } catch (e: Throwable) {
+            ApiResult.Error(e.message?: "Error Loading Flight list")
+        }
     }
-
 }

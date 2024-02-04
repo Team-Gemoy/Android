@@ -10,7 +10,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,7 +26,6 @@ class FlightViewModel @Inject constructor(
         .stateIn(viewModelScope, SharingStarted.Lazily, ApiResult.Loading())
 
 
-
     fun getFlight(
         departDate: String,
         seatClass: String,
@@ -35,16 +33,13 @@ class FlightViewModel @Inject constructor(
         departureAirportId: Int,
         arrivalAirportId: Int,
     ) = viewModelScope.launch {
-        repo.getFlight(
+        _flightList.value = ApiResult.Loading()
+        _flightList.value = repo.getFlight(
             departureAirportId = departureAirportId,
             arrivalAirportId = arrivalAirportId,
             departDate = departDate,
             seatClass = seatClass,
             numberOfPassenger = numberOfPassenger
-        ).onStart { _flightList.value = ApiResult.Loading() }
-            .collect {
-            _flightList.value = it
-        }
+        )
     }
-
 }
