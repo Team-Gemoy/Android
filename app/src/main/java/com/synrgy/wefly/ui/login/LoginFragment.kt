@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.login.LoginRequest
-import com.synrgy.wefly.data.api.login.LoginResponse
+import com.synrgy.wefly.data.api.json.login.LoginRequest
+import com.synrgy.wefly.data.api.json.login.LoginResponse
 import com.synrgy.wefly.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -66,19 +66,19 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         with(binding) {
             when (status) {
                 is ApiResult.Loading -> {
-                   // pbLogin.visibility = View.VISIBLE
+                    pbMain.visibility = View.VISIBLE
                     Log.d("neotica", "loading")
                 }
 
                 is ApiResult.Error -> {
-                  //  pbLogin.visibility = View.GONE
+                    pbMain.visibility = View.GONE
                     val error = status.errorMessage
                     Log.d("neotica", "$error")
                     Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
                 }
 
                 is ApiResult.Success -> {
-                 //   pbLogin.visibility = View.GONE
+                    pbMain.visibility = View.GONE
                     val head = status.data?.code.toString()
                     val getToken = status.data?.accessToken.toString()
                     viewModel.setToken(getToken)

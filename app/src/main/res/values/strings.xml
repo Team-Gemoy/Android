@@ -49,6 +49,9 @@
     <string name="departure_from">From</string>
 
     <string name="placeholder_loading">Loading…</string>
+    <string name="text_first_name">First Name</string>
+    <string name="text_last_name">Last Name</string>
+    <string name="text_nationality">Nationality</string>
 
     <integer-array name="passenger">
         <item>1</item>

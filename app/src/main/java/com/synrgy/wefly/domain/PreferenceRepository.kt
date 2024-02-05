@@ -1,9 +1,7 @@
 package com.synrgy.wefly.domain
 
-import kotlinx.coroutines.flow.Flow
-
 interface PreferenceRepository {
-    fun getToken(): Flow<String>
+    fun getToken(): String
 
     suspend fun setToken(value: String)
 

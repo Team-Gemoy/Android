@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.login.LoginResponse
+import com.synrgy.wefly.data.api.json.login.LoginResponse
 import com.synrgy.wefly.databinding.FragmentOrderBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

@@ -14,8 +14,8 @@ import com.synrgy.wefly.R
 import com.synrgy.wefly.common.UiUtils.getTextInputLayout
 import com.synrgy.wefly.common.showDatePickerDialog
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.register.RegisterRequest
-import com.synrgy.wefly.data.api.register.RegisterResponse
+import com.synrgy.wefly.data.api.json.register.RegisterRequest
+import com.synrgy.wefly.data.api.json.register.RegisterResponse
 import com.synrgy.wefly.databinding.FragmentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

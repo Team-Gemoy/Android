@@ -2,8 +2,7 @@ package com.synrgy.wefly.domain
 
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.HeaderResponse
-import com.synrgy.wefly.data.api.flight.FlightListResponse
-import kotlinx.coroutines.flow.Flow
+import com.synrgy.wefly.data.api.json.flight.FlightListResponse
 
 interface FlightRepository {
     suspend fun getFlight(
@@ -12,5 +11,5 @@ interface FlightRepository {
         departDate: String,
         seatClass: String,
         numberOfPassenger: Int
-    ): Flow<ApiResult<HeaderResponse<FlightListResponse>>>
+    ): ApiResult<HeaderResponse<FlightListResponse>>
 }

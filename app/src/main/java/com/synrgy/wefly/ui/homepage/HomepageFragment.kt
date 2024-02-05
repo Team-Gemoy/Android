@@ -13,12 +13,7 @@ import com.synrgy.wefly.common.repeatCollectionOnCreated
 import com.synrgy.wefly.common.showDatePickerDialog
 import com.synrgy.wefly.common.spinnerAdapter
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.transaction.Orderer
-import com.synrgy.wefly.data.api.transaction.Passenger
-import com.synrgy.wefly.data.api.transaction.TransactionDetailRequest
-import com.synrgy.wefly.data.api.transaction.TransactionRequest
 import com.synrgy.wefly.databinding.FragmentHomepageBinding
-import com.synrgy.wefly.ui.transaction.TransactionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,7 +22,6 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
     private lateinit var binding: FragmentHomepageBinding
 
     private val viewModel: HomeViewModel by viewModels()
-    private val transactionModel: TransactionViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +46,9 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
             btnSearchFlight.setOnClickListener {
                 val action = HomepageFragmentDirections.actionHomepageFragmentToFlightFragment(
                     seatClass = spSeatClass.selectedItem.toString(),
-                    passenger = spPassenger.selectedItem.toString().toInt()
+                    passenger = spPassenger.selectedItem.toString().toInt(),
+                    airportDepart = departId.text.toString().toInt(),
+                    airportArrival = arriveId.text.toString().toInt()
                 )
                 findNavController().navigate(action)
             }
@@ -60,37 +56,6 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
             homeSpinnerAdapter(array = passengerArray, spinner = spPassenger)
             val classArray = arrayOf("ECONOMY", "BUSINESS")
             homeSpinnerAdapter(classArray, spSeatClass)
-
-            ivNotification.setOnClickListener {
-                val passengers = Passenger(
-                    id = 2,
-                    firstName = "martin",
-                    lastName = "shit",
-                    dateOfBirth = "11-06-2000",
-                    nationality = "Indonesia"
-                )
-                val passengerArray = arrayListOf(passengers)
-                val orderer = Orderer(
-                    createdDate = "",
-                    deletedDate = "",
-                    updatedDate= "",
-                    id = 2,
-                    firstName = "firstname",
-                    lastName = "lastname",
-                    phoneNumber = "324234",
-                    email = "ex@gmail.com"
-                )
-                val transactionDetails = TransactionDetailRequest(2)
-                val transactionRequest = TransactionRequest(
-                    adultPassenger = 2,
-                    childPassenger = 2,
-                    infantPassenger = 2,
-                    passengers = passengerArray,
-                    orderer = orderer,
-                    transactionDetails = arrayListOf(transactionDetails)
-                )
-                transactionModel.transaction(transactionRequest)
-            }
         }
     }
 
@@ -98,13 +63,19 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.airportList.collect {
                 val content = it.data?.data?.content
+                val res = it.data
                 when(it){
                     is ApiResult.Loading -> binding.pbHome.visibility = View.VISIBLE
                     is ApiResult.Success -> {
                         binding.pbHome.visibility = View.GONE
                         val city = content?.map { it.city }?.toTypedArray() ?: emptyArray()
-                        departure(city)
-                        arrival(city)
+                        val cityId = content?.map { it.id.toString() }?.toTypedArray() ?: emptyArray()
+                        departure(city) {
+                            binding.departId.text = cityId[it]
+                        }
+                        arrival(city) {
+                            binding.arriveId.text = cityId[it]
+                        }
                         Log.d("neotica", "observeStateFlow: $content")
                     }
                     is ApiResult.Error -> {
@@ -116,24 +87,22 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
         }
     }
 
-    private fun departure(city: Array<String>){
-        homeSpinnerAdapter(city, binding.spFlightFrom)
+    private fun departure(city: Array<String>, onItemSelected: (position: Int) -> Unit = {}){
+        homeSpinnerAdapter(city, binding.spFlightFrom, onItemSelected = onItemSelected)
     }
-    private fun arrival(city: Array<String>){
-        homeSpinnerAdapter(city, binding.spFlightTo)
+    private fun arrival(city: Array<String>, onItemSelected: (position: Int) -> Unit = {}){
+        homeSpinnerAdapter(city, binding.spFlightTo, onItemSelected = onItemSelected)
     }
 
     private fun homeSpinnerAdapter(array: Array<out Any>, spinner: Spinner, onItemSelected: (position: Int) -> Unit = {}){
         spinnerAdapter(array = array, spinner = spinner, context = requireContext(), onItemSelected = onItemSelected)
     }
 
-    private suspend fun tokenRan () {
-        viewModel.token.collect {
-            if (it.isEmpty()) {
-                gotoLogin()
-            }
-            Log.d("neotica", "token: $it")
+    private fun tokenRan () {
+        if (viewModel.token.isEmpty()) {
+            gotoLogin()
         }
+        Log.d("neotica", "token: ${viewModel.token}")
     }
 
     private fun gotoLogin() {

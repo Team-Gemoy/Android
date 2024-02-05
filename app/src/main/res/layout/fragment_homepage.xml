@@ -130,12 +130,27 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-                                <TextView
-                                    android:layout_marginStart="5dp"
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/neutral6"
-                                    android:text="@string/departure_from"/>
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:layout_marginStart="5dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/neutral6"
+                                        android:text="@string/departure_from"/>
+                                    <TextView
+                                        android:id="@+id/depart_id"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_weight="5"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/neutral6"
+                                        android:text="id"/>
+                                </LinearLayout>
+
                                 <Spinner
                                     android:id="@+id/sp_flight_from"
                                     android:layout_width="match_parent"
@@ -160,12 +175,26 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-                                <TextView
-                                    android:layout_marginStart="5dp"
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/neutral6"
-                                    android:text="@string/departure_to"/>
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:layout_marginStart="5dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/neutral6"
+                                        android:text="@string/departure_to"/>
+                                    <TextView
+                                        android:id="@+id/arrive_id"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_weight="5"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/neutral6"
+                                        android:text="id"/>
+                                </LinearLayout>
                                 <Spinner
                                     android:id="@+id/sp_flight_to"
                                     android:layout_width="match_parent"
@@ -387,7 +416,5 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

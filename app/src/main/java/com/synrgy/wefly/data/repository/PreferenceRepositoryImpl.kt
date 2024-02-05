@@ -7,9 +7,13 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.synrgy.wefly.common.PreferenceDefaults
 import com.synrgy.wefly.domain.PreferenceRepository
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -20,10 +24,17 @@ class PreferenceRepositoryImpl @Inject constructor(
         private val TOKEN = stringPreferencesKey("token")
     }
 
-    override fun getToken(): Flow<String> {
-        return dataStore.data.map {
-            it[TOKEN] ?: PreferenceDefaults.TOKEN
-        }
+    private val data = dataStore.data
+        .stateIn(
+            scope = CoroutineScope(SupervisorJob()),
+            started = SharingStarted.Eagerly,
+            initialValue = runBlocking {
+                dataStore.data.first()
+            }
+        )
+
+    override fun getToken(): String {
+        return data.value[TOKEN] ?: PreferenceDefaults.TOKEN
     }
 
     override suspend fun setToken(value: String) {

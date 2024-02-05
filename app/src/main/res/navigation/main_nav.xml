@@ -68,5 +68,40 @@
         <argument
             android:name="passenger"
             app:argType="integer" />
+        <argument
+            android:name="airportDepart"
+            app:argType="integer" />
+        <argument
+            android:name="airportArrival"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_flightFragment_to_transactionFragment"
+            app:destination="@id/transactionFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/transactionFragment"
+        android:name="com.synrgy.wefly.ui.transaction.TransactionFragment"
+        android:label="TransactionFragment" >
+        <action
+            android:id="@+id/action_transactionFragment_to_transactionFragmentResponse"
+            app:destination="@id/transactionFragmentResponse" />
+        <action
+            android:id="@+id/action_transactionFragment_to_transactionFragmentResponse2"
+            app:destination="@id/transactionFragmentResponse" />
+    </fragment>
+    <fragment
+        android:id="@+id/transactionFragmentResponse"
+        android:name="com.synrgy.wefly.ui.transaction.response.TransactionFragmentResponse"
+        android:label="TransactionFragmentResponse" >
+        <argument
+            android:name="transactionId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_transactionFragmentResponse_to_paymentSuccessFragment"
+            app:destination="@id/paymentSuccessFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentSuccessFragment"
+        android:name="com.synrgy.wefly.ui.payment.PaymentSuccessFragment"
+        android:label="PaymentSuccessFragment" />
 </navigation>
