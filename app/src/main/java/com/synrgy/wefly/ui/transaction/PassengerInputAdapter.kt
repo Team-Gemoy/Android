@@ -43,7 +43,7 @@ class PassengerInputAdapter(
             itemPosition.firstName = etFirstName.text.toString()
             itemPosition.lastName = etLastName.text.toString()
             itemPosition.dateOfBirth = etDateOfBirthPassenger.text.toString()
-            itemPosition.nationality = etNationalityPassenger.text.toString()
+           // itemPosition.nationality = etNationalityPassenger.text.toString()
 
             root.setOnClickListener {
                 listener.onItemClick(itemPosition)

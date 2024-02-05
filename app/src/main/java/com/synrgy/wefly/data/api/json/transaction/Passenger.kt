@@ -4,6 +4,6 @@ data class Passenger(
     val id: Int,
     var firstName: String,
     var lastName: String,
-    var nationality: String,
+    val nationality: String,
     var dateOfBirth: String
 )

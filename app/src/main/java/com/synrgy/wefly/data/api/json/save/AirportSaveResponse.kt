@@ -1,4 +1,4 @@
-package com.synrgy.wefly.data.api.json.airport.save
+package com.synrgy.wefly.data.api.json.save
 
 data class AirportSaveResponse(
     val code: Int,

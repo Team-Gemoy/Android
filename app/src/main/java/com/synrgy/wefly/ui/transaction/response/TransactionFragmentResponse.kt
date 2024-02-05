@@ -6,8 +6,10 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.synrgy.wefly.R
+import com.synrgy.wefly.common.spinnerAdapter
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.json.transaction.Passenger
 import com.synrgy.wefly.databinding.FragmentTransactionResponseBinding
@@ -33,6 +35,17 @@ class TransactionFragmentResponse : Fragment(R.layout.fragment_transaction_respo
         with(binding) {
             val args = TransactionFragmentResponseArgs.fromBundle(arguments as Bundle)
             viewModel.getTransaction(args.transactionId)
+
+            spinnerAdapter(
+                array = arrayOf("BCA", "Mandiri", "BRI", "BNI", "BSI"),
+                context = requireContext(),
+                spinner = spBank
+            )
+
+            btnVerify.setOnClickListener {
+                val action = TransactionFragmentResponseDirections.actionTransactionFragmentResponseToPaymentSuccessFragment()
+                findNavController().navigate(action)
+            }
         }
     }
 
@@ -62,7 +75,7 @@ class TransactionFragmentResponse : Fragment(R.layout.fragment_transaction_respo
                             Log.d("neotica", "observeStateFlow: $data")
                             it.data?.data?.passengers?.let { it1 -> updateRecyclerView(list = it1) }
 
-                            btnOrder.setOnClickListener {}
+                            //btnOrder.setOnClickListener {}
                         }
                     }
                     is ApiResult.Error -> binding.pbMain.visibility = View.GONE
