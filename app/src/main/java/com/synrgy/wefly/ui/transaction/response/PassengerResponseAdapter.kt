@@ -3,7 +3,7 @@ package com.synrgy.wefly.ui.transaction.response
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.synrgy.wefly.data.api.transaction.Passenger
+import com.synrgy.wefly.data.api.json.transaction.Passenger
 import com.synrgy.wefly.databinding.ItemPassengerBinding
 
 class PassengerResponseAdapter(

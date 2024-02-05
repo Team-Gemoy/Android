@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.flight.FlightContent
+import com.synrgy.wefly.data.api.json.flight.FlightContent
 import com.synrgy.wefly.databinding.FragmentFlightBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

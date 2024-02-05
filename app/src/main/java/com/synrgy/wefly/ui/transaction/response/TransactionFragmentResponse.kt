@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.transaction.Passenger
+import com.synrgy.wefly.data.api.json.transaction.Passenger
 import com.synrgy.wefly.databinding.FragmentTransactionResponseBinding
 import com.synrgy.wefly.ui.transaction.TransactionViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +32,7 @@ class TransactionFragmentResponse : Fragment(R.layout.fragment_transaction_respo
     private fun setupUI() {
         with(binding) {
             val args = TransactionFragmentResponseArgs.fromBundle(arguments as Bundle)
-            viewModel.getTransaction("21"/*args.transactionId*/)
+            viewModel.getTransaction(args.transactionId)
         }
     }
 

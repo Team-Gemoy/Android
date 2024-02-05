@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.HeaderResponse
-import com.synrgy.wefly.data.api.flight.FlightListResponse
+import com.synrgy.wefly.data.api.json.flight.FlightListResponse
 import com.synrgy.wefly.data.repository.FlightRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.synrgy.wefly.common.showDatePickerDialog
-import com.synrgy.wefly.data.api.transaction.Passenger
+import com.synrgy.wefly.data.api.json.transaction.Passenger
 import com.synrgy.wefly.databinding.ItemPassengerInputBinding
 
 class PassengerInputAdapter(

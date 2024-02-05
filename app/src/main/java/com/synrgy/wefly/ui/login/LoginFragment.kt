@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.login.LoginRequest
-import com.synrgy.wefly.data.api.login.LoginResponse
+import com.synrgy.wefly.data.api.json.login.LoginRequest
+import com.synrgy.wefly.data.api.json.login.LoginResponse
 import com.synrgy.wefly.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay

@@ -11,10 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.common.showDatePickerDialog
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.transaction.Orderer
-import com.synrgy.wefly.data.api.transaction.Passenger
-import com.synrgy.wefly.data.api.transaction.TransactionDetailRequest
-import com.synrgy.wefly.data.api.transaction.TransactionRequest
+import com.synrgy.wefly.data.api.json.transaction.Orderer
+import com.synrgy.wefly.data.api.json.transaction.Passenger
+import com.synrgy.wefly.data.api.json.transaction.TransactionDetailRequest
+import com.synrgy.wefly.data.api.json.transaction.TransactionRequest
 import com.synrgy.wefly.databinding.FragmentTransactionBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -41,8 +41,8 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                 observeStateFlow()
                 val passengersFilled = Passenger(
                     id = 2,
-                    firstName = "martin",
-                    lastName = "shit",
+                    firstName = "ryo",
+                    lastName = "martin",
                     dateOfBirth = "11-06-2000",
                     nationality = "Indonesia"
                 )
@@ -53,7 +53,7 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                     dateOfBirth = etDateOfBirthPassenger.text.toString(),
                     nationality = etNationalityPassenger.text.toString()
                 )
-                val passengerArray = arrayListOf(passengersFilled, passengersFilled)
+                val passengerArray = arrayListOf(passengers, passengersFilled)
                 val orderer = Orderer(
                     createdDate = "",
                     deletedDate = "",
@@ -88,7 +88,7 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                             binding.pbMain.visibility = View.GONE
 
 
-                            val getId = it.data?.data?.id.toString()
+                            val getId = it.data?.data?.transaction?.id.toString()
                             Log.d("neotica", "observeStateFlow: ${it.data}")
                             Toast.makeText(context, getId, Toast.LENGTH_SHORT).show()
                             val action = TransactionFragmentDirections

@@ -4,8 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.HeaderResponse
-import com.synrgy.wefly.data.api.transaction.TransactionListResponse
-import com.synrgy.wefly.data.api.transaction.TransactionRequest
+import com.synrgy.wefly.data.api.json.transaction.TransactionListResponse
+import com.synrgy.wefly.data.api.json.transaction.TransactionRequest
+import com.synrgy.wefly.data.api.json.transaction.TransactionResponseNew
 import com.synrgy.wefly.data.repository.PreferenceRepositoryImpl
 import com.synrgy.wefly.data.repository.TransactionRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,9 +21,9 @@ class TransactionViewModel @Inject constructor(
     private val repo: TransactionRepositoryImpl,
     private val prefRepo: PreferenceRepositoryImpl
 ) : ViewModel() {
-    private val _transactionFLow: MutableStateFlow<ApiResult<HeaderResponse<TransactionListResponse>>> =
+    private val _transactionFLow: MutableStateFlow<ApiResult<HeaderResponse<TransactionResponseNew>>> =
         MutableStateFlow(ApiResult.Loading())
-    val transactionFlow: StateFlow<ApiResult<HeaderResponse<TransactionListResponse>>> = _transactionFLow.asStateFlow()
+    val transactionFlow: StateFlow<ApiResult<HeaderResponse<TransactionResponseNew>>> = _transactionFLow.asStateFlow()
 
     private val _getId: MutableStateFlow<ApiResult<HeaderResponse<TransactionListResponse>>> =
         MutableStateFlow(ApiResult.Loading())

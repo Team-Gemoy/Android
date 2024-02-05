@@ -3,7 +3,7 @@ package com.synrgy.wefly.ui.homepage
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.airport.list.AirportListResponse
+import com.synrgy.wefly.data.api.json.airport.list.AirportListResponse
 import com.synrgy.wefly.data.repository.AirportRepositoryImpl
 import com.synrgy.wefly.data.repository.PreferenceRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel

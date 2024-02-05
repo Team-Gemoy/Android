@@ -1,9 +1,9 @@
 package com.synrgy.wefly.data.repository
 
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.ApiService
+import com.synrgy.wefly.data.api.service.ApiService
 import com.synrgy.wefly.data.api.HeaderResponse
-import com.synrgy.wefly.data.api.flight.FlightListResponse
+import com.synrgy.wefly.data.api.json.flight.FlightListResponse
 import com.synrgy.wefly.domain.FlightRepository
 import javax.inject.Inject
 

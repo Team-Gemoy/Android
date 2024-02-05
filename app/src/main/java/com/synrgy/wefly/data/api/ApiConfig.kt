@@ -2,6 +2,7 @@ package com.synrgy.wefly.data.api
 
 import android.util.Log
 import com.synrgy.wefly.common.Constant.token
+import com.synrgy.wefly.data.api.service.ApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

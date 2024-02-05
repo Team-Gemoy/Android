@@ -3,8 +3,8 @@ package com.synrgy.wefly.ui.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.login.LoginRequest
-import com.synrgy.wefly.data.api.login.LoginResponse
+import com.synrgy.wefly.data.api.json.login.LoginRequest
+import com.synrgy.wefly.data.api.json.login.LoginResponse
 import com.synrgy.wefly.data.repository.AuthRepositoryImpl
 import com.synrgy.wefly.data.repository.PreferenceRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel

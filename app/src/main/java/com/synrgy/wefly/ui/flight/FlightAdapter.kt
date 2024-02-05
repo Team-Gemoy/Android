@@ -3,7 +3,7 @@ package com.synrgy.wefly.ui.flight
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.synrgy.wefly.data.api.flight.FlightContent
+import com.synrgy.wefly.data.api.json.flight.FlightContent
 import com.synrgy.wefly.databinding.ItemFlightBinding
 
 class FlightAdapter(
