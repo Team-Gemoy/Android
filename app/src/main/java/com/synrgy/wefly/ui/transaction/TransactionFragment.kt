@@ -114,7 +114,8 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
     }
 
     private fun gotoLogin() {
-        val action = TransactionFragmentDirections.actionTransactionFragmentToAuthGroup() //HomepageFragmentDirections.actionHomepageFragmentToAuthGroup()
+        findNavController().popBackStack()
+        val action = TransactionFragmentDirections.actionTransactionFragmentToAuthGroup()
         findNavController().navigate(action)
     }
 }

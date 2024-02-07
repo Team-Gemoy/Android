@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class FlightRepositoryImpl @Inject constructor(
     private val apiService: AuthService
-): FlightRepository {
+) : FlightRepository {
 
     override suspend fun getFlight(
         departureAirportId: Int,
@@ -17,18 +17,17 @@ class FlightRepositoryImpl @Inject constructor(
         departDate: String,
         seatClass: String,
         numberOfPassenger: Int
-    ): ApiResult<HeaderResponse<FlightListResponse>> {
-        return try {
-            val response = apiService.getFlight(
-                departureAirportId = departureAirportId,
-                arrivalAirportId = arrivalAirportId,
-                departDate = departDate,
-                seatClass = seatClass,
-                numberOfPassenger = numberOfPassenger
-            )
-            (ApiResult.Success(response))
-        } catch (e: Throwable) {
-            ApiResult.Error(e.message?: "Error Loading Flight list")
-        }
+    ): ApiResult<HeaderResponse<FlightListResponse>> = try {
+        val response = apiService.getFlight(
+            departureAirportId = departureAirportId,
+            arrivalAirportId = arrivalAirportId,
+            departDate = departDate,
+            seatClass = seatClass,
+            numberOfPassenger = numberOfPassenger
+        )
+        (ApiResult.Success(response))
+    } catch (e: Throwable) {
+        ApiResult.Error(e.message ?: "Error Loading Flight list")
     }
+
 }

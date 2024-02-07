@@ -2,7 +2,6 @@ package com.synrgy.wefly
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
@@ -26,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         val bottomNavView = binding.bottomNavigationView
-
         bottomNavView.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -36,28 +34,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.loginFragment,
                 R.id.registerFragment -> false // Replace with your fragment IDs
                 else -> true
-                /*
-                if (viewModel.token.isEmpty()) {
-                    //  gotoLogin()
-                    when (destination.id) {
-                        R.id.flightFragment,
-                        R.id.homepageFragment,
-                        R.id.loginFragment,
-                        R.id.registerFragment -> false // Replace with your fragment IDs
-                        else -> true
-                    }
-                } else {
-
-                }*/
             }
             bottomNavView.visibility = if (isBottomNavVisible) View.VISIBLE else View.GONE
         }
-    }
-
-    private fun tokenRan () {
-        if (viewModel.token.isEmpty()) {
-            //  gotoLogin()
-        }
-        Log.d("neotica", "token: ${viewModel.token}")
     }
 }

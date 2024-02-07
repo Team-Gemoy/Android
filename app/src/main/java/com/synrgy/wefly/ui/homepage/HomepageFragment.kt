@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
+import com.synrgy.wefly.common.repeatCollectionOnCreated
 import com.synrgy.wefly.common.showDatePickerDialog
 import com.synrgy.wefly.common.spinnerAdapter
 import com.synrgy.wefly.data.api.ApiResult
@@ -27,9 +28,9 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
         binding = FragmentHomepageBinding.bind(view)
 
         setupUI()
- /*       repeatCollectionOnCreated {
+        repeatCollectionOnCreated {
             tokenRan()
-        }*/
+        }
         viewModel.getAirportList()
         observeStateFlow()
     }

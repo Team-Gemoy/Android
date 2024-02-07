@@ -3,6 +3,7 @@ package com.synrgy.wefly.data.api.service
 import com.synrgy.wefly.data.api.HeaderResponse
 import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassRequest
 import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassResponse
+import com.synrgy.wefly.data.api.json.profile.ProfileResponse
 import com.synrgy.wefly.data.api.json.transaction.TransactionListResponse
 import com.synrgy.wefly.data.api.json.transaction.TransactionRequest
 import com.synrgy.wefly.data.api.json.transaction.TransactionResponseNew
@@ -27,4 +28,7 @@ interface ApiService {
     suspend fun getTransactionId(
         @Path("id") id: String,
     ): HeaderResponse<TransactionListResponse>
+
+    @GET("user/profile")
+    suspend fun getUserProfile(): HeaderResponse<ProfileResponse>
 }

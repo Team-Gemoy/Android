@@ -93,6 +93,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun gotoHome() {
         viewLifecycleOwner.lifecycleScope.launch {
             delay(500)
+            findNavController().popBackStack()
             val action = LoginFragmentDirections.actionGlobalHomeFragment()
             findNavController().navigate(action)
         }
