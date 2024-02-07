@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_homepageFragment_to_flightFragment"
             app:destination="@id/flightFragment" />
+        <action
+            android:id="@+id/action_homepageFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -111,4 +114,8 @@
         android:id="@+id/paymentSuccessFragment"
         android:name="com.synrgy.wefly.ui.payment.PaymentSuccessFragment"
         android:label="PaymentSuccessFragment" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.synrgy.wefly.ui.notification.NotificationFragment"
+        android:label="NotificationFragment" />
 </navigation>

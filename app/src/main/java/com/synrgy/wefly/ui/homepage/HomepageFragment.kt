@@ -36,6 +36,10 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
 
     private fun setupUI() {
         with(binding) {
+            ivNotification.setOnClickListener {
+                val action = HomepageFragmentDirections.actionHomepageFragmentToNotificationFragment()
+                findNavController().navigate(action)
+            }
             ivDateDeparture.setOnClickListener {
                 showDatePickerDialog(requireContext(), etDateDeparture)
             }
