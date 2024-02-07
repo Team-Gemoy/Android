@@ -1,11 +1,14 @@
 package com.synrgy.wefly.ui.order
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
+import com.synrgy.wefly.common.repeatCollectionOnCreated
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.json.login.LoginResponse
 import com.synrgy.wefly.databinding.FragmentOrderBinding
@@ -23,6 +26,7 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
         binding = FragmentOrderBinding.bind(view)
 
         setupUI()
+        repeatCollectionOnCreated { tokenRan() }
     }
 
     private fun setupUI() {
@@ -41,5 +45,17 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
         with(binding) {
 
         }
+    }
+
+    private fun tokenRan () {
+        if (viewModel.token.isEmpty()) {
+            gotoLogin()
+        }
+        Log.d("neotica", "token: ${viewModel.token}")
+    }
+
+    private fun gotoLogin() {
+        val action = OrderFragmentDirections.actionOrderFragmentToAuthGroup()
+        findNavController().navigate(action)
     }
 }
