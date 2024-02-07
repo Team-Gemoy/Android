@@ -88,6 +88,9 @@
         <action
             android:id="@+id/action_transactionFragment_to_transactionFragmentResponse2"
             app:destination="@id/transactionFragmentResponse" />
+        <action
+            android:id="@+id/action_transactionFragment_to_authGroup"
+            app:destination="@id/authGroup" />
     </fragment>
     <fragment
         android:id="@+id/transactionFragmentResponse"

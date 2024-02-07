@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
+import com.synrgy.wefly.common.repeatCollectionOnCreated
 import com.synrgy.wefly.common.showDatePickerDialog
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.json.transaction.Orderer
@@ -30,6 +31,9 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
         binding = FragmentTransactionBinding.bind(view)
 
         setupUI()
+        repeatCollectionOnCreated {
+            tokenRan()
+        }
     }
 
     private fun setupUI() {
@@ -100,5 +104,17 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                 }
             }
         }
+    }
+
+    private fun tokenRan () {
+        if (viewModel.token.isEmpty()) {
+            gotoLogin()
+        }
+        Log.d("neotica", "token: ${viewModel.token}")
+    }
+
+    private fun gotoLogin() {
+        val action = TransactionFragmentDirections.actionTransactionFragmentToAuthGroup() //HomepageFragmentDirections.actionHomepageFragmentToAuthGroup()
+        findNavController().navigate(action)
     }
 }
