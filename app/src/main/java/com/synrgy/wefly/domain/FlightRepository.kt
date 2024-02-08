@@ -2,7 +2,8 @@ package com.synrgy.wefly.domain
 
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.HeaderResponse
-import com.synrgy.wefly.data.api.json.flight.FlightListResponse
+import com.synrgy.wefly.data.api.json.ContentResponse
+import com.synrgy.wefly.data.api.json.flight.FlightContent
 
 interface FlightRepository {
     suspend fun getFlight(
@@ -11,5 +12,5 @@ interface FlightRepository {
         departDate: String,
         seatClass: String,
         numberOfPassenger: Int
-    ): ApiResult<HeaderResponse<FlightListResponse>>
+    ): ApiResult<HeaderResponse<ContentResponse<FlightContent>>>
 }

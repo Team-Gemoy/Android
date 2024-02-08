@@ -4,7 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.HeaderResponse
-import com.synrgy.wefly.data.api.json.flight.FlightListResponse
+import com.synrgy.wefly.data.api.json.ContentResponse
+import com.synrgy.wefly.data.api.json.flight.FlightContent
 import com.synrgy.wefly.data.repository.FlightRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,10 +20,10 @@ class FlightViewModel @Inject constructor(
     private val repo: FlightRepositoryImpl
 ) : ViewModel() {
 
-    private val _flightList: MutableStateFlow<ApiResult<HeaderResponse<FlightListResponse>>> =
+    private val _flightList: MutableStateFlow<ApiResult<HeaderResponse<ContentResponse<FlightContent>>>> =
         MutableStateFlow(ApiResult.Loading())
 
-    val flightList: StateFlow<ApiResult<HeaderResponse<FlightListResponse>>> = _flightList
+    val flightList: StateFlow<ApiResult<HeaderResponse<ContentResponse<FlightContent>>>> = _flightList
         .stateIn(viewModelScope, SharingStarted.Lazily, ApiResult.Loading())
 
 

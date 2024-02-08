@@ -1,12 +1,6 @@
 package com.synrgy.wefly.data.api.json.flight
 
-import com.synrgy.wefly.data.api.json.airport.list.ContentAirport
-import com.synrgy.wefly.data.api.json.airport.list.PageAble
-
-data class FlightListResponse(
-    val content: ArrayList<FlightContent>,
-    val pageable: PageAble,
-)
+import com.synrgy.wefly.data.api.json.list.ContentAirport
 
 data class FlightContent(
     val id: Int,

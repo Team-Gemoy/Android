@@ -2,7 +2,8 @@ package com.synrgy.wefly.data.repository
 
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.HeaderResponse
-import com.synrgy.wefly.data.api.json.flight.FlightListResponse
+import com.synrgy.wefly.data.api.json.ContentResponse
+import com.synrgy.wefly.data.api.json.flight.FlightContent
 import com.synrgy.wefly.data.api.service.AuthService
 import com.synrgy.wefly.domain.FlightRepository
 import javax.inject.Inject
@@ -17,7 +18,8 @@ class FlightRepositoryImpl @Inject constructor(
         departDate: String,
         seatClass: String,
         numberOfPassenger: Int
-    ): ApiResult<HeaderResponse<FlightListResponse>> = try {
+    ): ApiResult<HeaderResponse<ContentResponse<FlightContent>>> =
+        try {
         val response = apiService.getFlight(
             departureAirportId = departureAirportId,
             arrivalAirportId = arrivalAirportId,

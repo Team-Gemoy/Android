@@ -31,4 +31,7 @@ interface ApiService {
 
     @GET("user/profile")
     suspend fun getUserProfile(): HeaderResponse<ProfileResponse>
+
+    @GET("transaction/list?orderType=asc&orderBy=id")
+    suspend fun getHistory()//: HeaderResponse<>
 }
