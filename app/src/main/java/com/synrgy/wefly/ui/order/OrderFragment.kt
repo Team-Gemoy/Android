@@ -9,8 +9,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.common.repeatCollectionOnCreated
-import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.json.login.LoginResponse
 import com.synrgy.wefly.databinding.FragmentOrderBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -27,6 +25,7 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
 
         setupUI()
         repeatCollectionOnCreated { tokenRan() }
+        viewModel.getHistory()
     }
 
     private fun setupUI() {
@@ -37,12 +36,6 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
 
     private fun observeStateFlow() {
         viewLifecycleOwner.lifecycleScope.launch {
-
-        }
-    }
-
-    private fun handleSignInResult(status: ApiResult<LoginResponse>) {
-        with(binding) {
 
         }
     }

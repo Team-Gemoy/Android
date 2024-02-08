@@ -1,6 +1,7 @@
 package com.synrgy.wefly.data.api.service
 
 import com.synrgy.wefly.data.api.HeaderResponse
+import com.synrgy.wefly.data.api.json.ContentResponse
 import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassRequest
 import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassResponse
 import com.synrgy.wefly.data.api.json.profile.ProfileResponse
@@ -33,5 +34,5 @@ interface ApiService {
     suspend fun getUserProfile(): HeaderResponse<ProfileResponse>
 
     @GET("transaction/list?orderType=asc&orderBy=id")
-    suspend fun getHistory()//: HeaderResponse<>
+    suspend fun getHistory(): HeaderResponse<ContentResponse<TransactionListResponse>>
 }
