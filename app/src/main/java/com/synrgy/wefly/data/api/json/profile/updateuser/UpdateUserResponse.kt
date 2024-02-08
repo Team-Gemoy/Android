@@ -1,4 +1,4 @@
-package com.synrgy.wefly.data.api.json.updateuser
+package com.synrgy.wefly.data.api.json.profile.updateuser
 
 import com.google.gson.annotations.SerializedName
 

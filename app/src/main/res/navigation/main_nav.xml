@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
     app:startDestination="@id/homepageFragment">
 
@@ -20,11 +21,28 @@
             <action
                 android:id="@+id/action_homepageFragment_to_authGroup"
                 app:destination="@id/authGroup" />
+            <action
+                android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+                app:destination="@id/forgotPasswordFragment" />
         </fragment>
         <fragment
             android:id="@+id/registerFragment"
             android:name="com.synrgy.wefly.ui.register.RegisterFragment"
-            android:label="RegisterFragment" />
+            android:label="RegisterFragment" >
+            <action
+                android:id="@+id/action_registerFragment_to_loginFragment"
+                app:popUpTo="@id/authGroup"
+                app:popUpToInclusive="true"
+                app:destination="@id/loginFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/changePasswordFragment"
+            android:name="com.synrgy.wefly.ui.forgotpassword.setnewpass.ChangePasswordFragment"
+            android:label="ChangePasswordFragment" >
+            <argument
+                android:name="otp"
+                app:argType="string" />
+        </fragment>
         <action
             android:id="@+id/action_global_homeFragment"
             app:popUpTo="@+id/authGroup"
@@ -32,7 +50,28 @@
             app:destination="@id/homepageFragment" />
         <action
             android:id="@+id/action_global_accountFragment"
+            app:popUpTo="@+id/authGroup"
+            app:popUpToInclusive="true"
             app:destination="@id/accountFragment" />
+        <fragment
+            android:id="@+id/forgotPasswordFragment"
+            android:name="com.synrgy.wefly.ui.forgotpassword.ForgotPasswordFragment"
+            android:label="ForgotPasswordFragment" >
+            <action
+                android:id="@+id/action_forgotPasswordFragment_to_forgotPasswordOtpFragment"
+                app:destination="@id/forgotPasswordOtpFragment" />
+            <action
+                android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
+                app:destination="@id/loginFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/forgotPasswordOtpFragment"
+            android:name="com.synrgy.wefly.ui.forgotpassword.otp.ForgotPasswordOtpFragment"
+            android:label="ForgotPasswordOtpFragment" >
+            <action
+                android:id="@+id/action_forgotPasswordOtpFragment_to_changePasswordFragment"
+                app:destination="@id/changePasswordFragment" />
+        </fragment>
     </navigation>
 
     <fragment
@@ -45,6 +84,13 @@
         <action
             android:id="@+id/action_homepageFragment_to_flightFragment"
             app:destination="@id/flightFragment" />
+        <action
+            android:id="@+id/action_homepageFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_authGroup"
+            app:destination="@id/authGroup"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -52,12 +98,23 @@
         android:label="AccountFragment" >
         <action
             android:id="@+id/action_accountFragment_to_authGroup"
-            app:destination="@id/authGroup" />
+            app:popUpTo="@+id/accountFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/authGroup"/>
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
         android:name="com.synrgy.wefly.ui.order.OrderFragment"
-        android:label="OrderFragment" />
+        android:label="OrderFragment" >
+        <action
+            android:id="@+id/action_orderFragment_to_authGroup"
+            app:destination="@id/authGroup" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_homeFragment"
+        app:popUpTo="@+id/authGroup"
+        app:popUpToInclusive="true"
+        app:destination="@id/homepageFragment" />
     <fragment
         android:id="@+id/flightFragment"
         android:name="com.synrgy.wefly.ui.flight.FlightFragment"
@@ -75,8 +132,13 @@
             android:name="airportArrival"
             app:argType="integer" />
         <action
+            android:id="@+id/action_transactionFragment_to_authGroup"
+            app:destination="@id/authGroup" />
+        <action
             android:id="@+id/action_flightFragment_to_transactionFragment"
-            app:destination="@id/transactionFragment" />
+            app:destination="@id/transactionFragment"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/transactionFragment"
@@ -88,6 +150,9 @@
         <action
             android:id="@+id/action_transactionFragment_to_transactionFragmentResponse2"
             app:destination="@id/transactionFragmentResponse" />
+        <action
+            android:id="@+id/action_transactionFragment_to_authGroup"
+            app:destination="@id/authGroup" />
     </fragment>
     <fragment
         android:id="@+id/transactionFragmentResponse"
@@ -104,4 +169,8 @@
         android:id="@+id/paymentSuccessFragment"
         android:name="com.synrgy.wefly.ui.payment.PaymentSuccessFragment"
         android:label="PaymentSuccessFragment" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.synrgy.wefly.ui.notification.NotificationFragment"
+        android:label="NotificationFragment" />
 </navigation>

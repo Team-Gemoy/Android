@@ -1,4 +1,4 @@
-package com.synrgy.wefly.ui.forgotpassword
+package com.synrgy.wefly.ui.forgotpassword.setnewpass
 
 import android.os.Bundle
 import android.view.View
@@ -6,23 +6,23 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassRequest
-import com.synrgy.wefly.databinding.FragmentForgotPassBinding
+import com.synrgy.wefly.data.api.json.forgetpassword.changepassword.ChangePasswordRequest
+import com.synrgy.wefly.databinding.FragmentChangePassBinding
+import com.synrgy.wefly.ui.forgotpassword.ForgotPassViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_pass) {
-    private lateinit var binding: FragmentForgotPassBinding
+class ChangePasswordFragment : Fragment(R.layout.fragment_change_pass) {
+    private lateinit var binding: FragmentChangePassBinding
 
     private val viewModel: ForgotPassViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentForgotPassBinding.bind(view)
+        binding = FragmentChangePassBinding.bind(view)
 
         setupUI()
     }
@@ -31,24 +31,29 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_pass) {
         with(binding) {
             btnReset.setOnClickListener {
                 observeStateFlow()
-                val forgotPassString = ForgotPassRequest(email = etEmail.text.toString())
-                viewModel.forgotPass(forgotPassString)
+                val args = ChangePasswordFragmentArgs.fromBundle(arguments as Bundle)
+                val changePassBody = ChangePasswordRequest(
+                    email = etEmail.text.toString(),
+                    newPassword = etPassword.text.toString(),
+                    confirmPassword = etPassword.text.toString(),
+                    otp = args.otp
+                )
+                viewModel.changePass(changePassBody)
             }
-            tvBack.setOnClickListener { findNavController().navigateUp() }
         }
     }
 
     private fun observeStateFlow() {
         viewLifecycleOwner.lifecycleScope.launch {
             with(binding) {
-                viewModel.password.collect {
+                viewModel.newPass.collect {
                     when(it) {
                         is ApiResult.Loading -> pbMain.visibility = View.VISIBLE
                         is ApiResult.Success -> {
                             pbMain.visibility = View.GONE
                             Toast.makeText(context, "Success: ${it.data?.message}", Toast.LENGTH_SHORT).show()
-                            val action = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToForgotPasswordOtpFragment()
-                            findNavController().navigate(action)
+                          /*  val action = ForgotPasswordOtpFragmentDirections.actionForgotPasswordOtpFragmentToChangePasswordFragment(pinMain.text.toString())
+                            findNavController().navigate(action)*/
                         }
                         is ApiResult.Error -> {
                             pbMain.visibility = View.GONE
@@ -59,5 +64,4 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_pass) {
             }
         }
     }
-
 }

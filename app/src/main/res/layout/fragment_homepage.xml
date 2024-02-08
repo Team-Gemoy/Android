@@ -234,7 +234,8 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:padding="10dp">
 
                                 <ImageView
                                     android:id="@+id/iv_date_departure"
@@ -265,7 +266,8 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:padding="10dp">
 
                                 <ImageView
                                     android:id="@+id/iv_date_return"
@@ -324,6 +326,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:padding="10dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -368,6 +371,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:padding="10dp"
                             android:orientation="horizontal">
 
                             <ImageView

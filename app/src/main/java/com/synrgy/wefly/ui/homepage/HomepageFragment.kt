@@ -37,6 +37,10 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
 
     private fun setupUI() {
         with(binding) {
+            ivNotification.setOnClickListener {
+                val action = HomepageFragmentDirections.actionHomepageFragmentToNotificationFragment()
+                findNavController().navigate(action)
+            }
             ivDateDeparture.setOnClickListener {
                 showDatePickerDialog(requireContext(), etDateDeparture)
             }
@@ -100,7 +104,7 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
 
     private fun tokenRan () {
         if (viewModel.token.isEmpty()) {
-            gotoLogin()
+          //  gotoLogin()
         }
         Log.d("neotica", "token: ${viewModel.token}")
     }

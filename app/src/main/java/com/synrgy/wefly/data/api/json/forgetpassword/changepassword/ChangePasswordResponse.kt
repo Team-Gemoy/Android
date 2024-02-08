@@ -1,4 +1,4 @@
-package com.synrgy.wefly.data.api.json.changepassword
+package com.synrgy.wefly.data.api.json.forgetpassword.changepassword
 
 /**
  * Created by Yosua on 15/01/2024
