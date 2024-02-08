@@ -28,14 +28,14 @@ class OrderAdapter(
         val context = holder.itemView.context
         holder.binding.apply {
             val itemPosition = listItem[position]
-            tvAirportId.text = itemPosition.orderer.firstName //.flight.arrivalAirport?.id.toString()
-           /* tvAirline.text = itemPosition.flight.airplane?.airline?.name
-            tvSeatClass.text = itemPosition.seatClass
-            tvDepartCity.text = itemPosition.flight.departureAirport?.city
-            tvDepartTime.text = itemPosition.flight.departureTime
-            tvArrivalCity.text = itemPosition.flight.departureAirport?.city
-            tvArrivalTime.text = itemPosition.flight.arrivalTime
-            tvPrice.text = itemPosition.flight.basePrice.toString()*/
+            tvFullName.text = "${itemPosition.orderer.firstName} ${itemPosition.orderer.lastName}"
+            tvEmail.text = itemPosition.orderer.email
+            tvPhoneNumber.text = itemPosition.orderer.phoneNumber
+           // tv.text = itemPosition.paymentProof
+         //   tvDepartTime.text = itemPosition.passengers[0].firstName
+          /*  tvArrivalCity.text = itemPosition.flight.departureAirport?.city
+            tvArrivalTime.text = itemPosition.flight.arrivalTime*/
+            tvPrice.text = itemPosition.totalPrice.toString()
             root.setOnClickListener { listener.onItemClick(itemPosition) }
         }
     }

@@ -57,16 +57,16 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                     dateOfBirth = etDateOfBirthPassenger.text.toString(),
                     nationality = etNationalityPassenger.text.toString()
                 )
-                val passengerArray = arrayListOf(passengers, passengersFilled)
+                val passengerArray = arrayListOf(passengers)
                 val orderer = Orderer(
                     createdDate = "",
                     deletedDate = "",
                     updatedDate= "",
                     id = 2,
-                    firstName = "firstname",
-                    lastName = "lastname",
-                    phoneNumber = "324234",
-                    email = "ex@gmail.com"
+                    firstName = "Ryo",
+                    lastName = "Martin",
+                    phoneNumber = "0895237478",
+                    email = "martin@gmail.com"
                 )
                 val transactionDetails = TransactionDetailRequest(2)
                 val transactionRequest = TransactionRequest(

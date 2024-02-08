@@ -3,117 +3,190 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:theme="@style/Theme.Material3.Light"
-    android:layout_height="180dp"
-    android:layout_margin="5dp"
-    android:background="@drawable/flight_item_bg">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_airline"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="31dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image_airline_example" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/container_core"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="end"
-        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:padding="15dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_airline"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_airport_id"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="id"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
 
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center_horizontal"
+                android:text="Orderer Profile"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tv_airline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/placeholder_loading"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/fullname"
+                android:textSize="@dimen/text_title" />
 
-        <TextView
-            android:id="@+id/tv_seat_class"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/placeholder_loading"
-            android:textColor="@color/neutral8" />
-    </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/CustomOutlinedTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundColor="@color/white"
+                app:errorTextAppearance="@style/ErrorTextAppearance">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_airline">
+                <TextView
+                    android:id="@+id/tv_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:hint="@string/text_first_name"
+                    android:textSize="@dimen/text_value" />
 
-        <TextView
-            android:id="@+id/tv_depart_city"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/placeholder_loading"
-            android:textColor="@color/neutral7" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tv_depart_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/placeholder_loading"
-            android:textColor="@color/neutral8"
-            android:textSize="20sp"/>
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/email"
+                android:textSize="@dimen/text_title" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="end"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_airline">
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/CustomOutlinedTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundColor="@color/white"
+                app:errorTextAppearance="@style/ErrorTextAppearance">
 
-        <TextView
-            android:id="@+id/tv_arrival_city"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/placeholder_loading"
-            android:textColor="@color/neutral7" />
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:hint="@string/email"
+                    android:textSize="@dimen/text_value" />
 
-        <TextView
-            android:id="@+id/tv_arrival_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/placeholder_loading"
-            android:textColor="@color/neutral8"
-            android:textSize="20sp"/>
-    </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tv_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/placeholder_loading"
-        android:textColor="@color/wefly_main"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/phone_number"
+                android:textSize="12sp" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/CustomOutlinedTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                app:boxBackgroundColor="@color/white"
+                app:errorTextAppearance="@style/ErrorTextAppearance">
+
+                <TextView
+                    android:id="@+id/tv_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="@string/phone_number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="City"
+                android:textSize="12sp" />
+
+            <!--<com.google.android.material.textfield.TextInputLayout
+                style="@style/CustomOutlinedTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundColor="@color/white"
+                app:errorTextAppearance="@style/ErrorTextAppearance">
+
+                <TextView
+                    android:id="@+id/tv_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:hint="City"
+                    android:textSize="14sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/date_of_birth"
+                android:textSize="12sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/CustomOutlinedTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundColor="@color/white"
+                app:errorTextAppearance="@style/ErrorTextAppearance">
+
+                <TextView
+                    android:id="@+id/tv_date_of_birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:hint="@string/text_nationality"
+                    android:textSize="14sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Total Price"
+                android:textSize="12sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/CustomOutlinedTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundColor="@color/white"
+                app:errorTextAppearance="@style/ErrorTextAppearance">
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:hint="Price"
+                    android:textColor="@color/primary_blue"
+                    android:textSize="@dimen/text_value" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
