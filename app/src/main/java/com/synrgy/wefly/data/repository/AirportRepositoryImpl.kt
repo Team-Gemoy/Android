@@ -1,7 +1,7 @@
 package com.synrgy.wefly.data.repository
 
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.json.list.AirportListResponse
+import com.synrgy.wefly.data.api.json.airport.list.AirportListResponse
 import com.synrgy.wefly.data.api.service.AuthService
 import com.synrgy.wefly.domain.AirportRepository
 import kotlinx.coroutines.flow.Flow

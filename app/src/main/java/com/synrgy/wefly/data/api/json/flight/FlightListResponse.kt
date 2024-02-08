@@ -1,6 +1,6 @@
 package com.synrgy.wefly.data.api.json.flight
 
-import com.synrgy.wefly.data.api.json.list.ContentAirport
+import com.synrgy.wefly.data.api.json.airport.list.ContentAirport
 
 data class FlightContent(
     val id: Int,

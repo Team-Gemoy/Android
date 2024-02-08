@@ -2,7 +2,7 @@ package com.synrgy.wefly.data.api.service
 
 import com.synrgy.wefly.data.api.HeaderResponse
 import com.synrgy.wefly.data.api.json.ContentResponse
-import com.synrgy.wefly.data.api.json.list.AirportListResponse
+import com.synrgy.wefly.data.api.json.airport.list.AirportListResponse
 import com.synrgy.wefly.data.api.json.flight.FlightContent
 import com.synrgy.wefly.data.api.json.login.LoginRequest
 import com.synrgy.wefly.data.api.json.login.LoginResponse

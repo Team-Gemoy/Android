@@ -1,4 +1,4 @@
-package com.synrgy.wefly.data.api.json.list
+package com.synrgy.wefly.data.api.json.airport.list
 
 import com.google.gson.annotations.SerializedName
 
