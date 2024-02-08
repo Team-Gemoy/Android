@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
     app:startDestination="@id/homepageFragment">
 
@@ -34,6 +35,14 @@
                 app:popUpToInclusive="true"
                 app:destination="@id/loginFragment" />
         </fragment>
+        <fragment
+            android:id="@+id/changePasswordFragment"
+            android:name="com.synrgy.wefly.ui.forgotpassword.setnewpass.ChangePasswordFragment"
+            android:label="ChangePasswordFragment" >
+            <argument
+                android:name="otp"
+                app:argType="string" />
+        </fragment>
         <action
             android:id="@+id/action_global_homeFragment"
             app:popUpTo="@+id/authGroup"
@@ -51,11 +60,18 @@
             <action
                 android:id="@+id/action_forgotPasswordFragment_to_forgotPasswordOtpFragment"
                 app:destination="@id/forgotPasswordOtpFragment" />
+            <action
+                android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
+                app:destination="@id/loginFragment" />
         </fragment>
         <fragment
             android:id="@+id/forgotPasswordOtpFragment"
             android:name="com.synrgy.wefly.ui.forgotpassword.otp.ForgotPasswordOtpFragment"
-            android:label="ForgotPasswordOtpFragment" />
+            android:label="ForgotPasswordOtpFragment" >
+            <action
+                android:id="@+id/action_forgotPasswordOtpFragment_to_changePasswordFragment"
+                app:destination="@id/changePasswordFragment" />
+        </fragment>
     </navigation>
 
     <fragment

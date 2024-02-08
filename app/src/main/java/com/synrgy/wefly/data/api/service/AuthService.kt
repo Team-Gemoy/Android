@@ -6,6 +6,7 @@ import com.synrgy.wefly.data.api.json.airport.list.AirportListResponse
 import com.synrgy.wefly.data.api.json.flight.FlightContent
 import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassRequest
 import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassResponse
+import com.synrgy.wefly.data.api.json.forgetpassword.changepassword.ChangePasswordRequest
 import com.synrgy.wefly.data.api.json.login.LoginRequest
 import com.synrgy.wefly.data.api.json.login.LoginResponse
 import com.synrgy.wefly.data.api.json.register.RegisterRequest
@@ -15,6 +16,8 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface AuthService {
@@ -44,5 +47,11 @@ interface AuthService {
     @POST("forget-password/forgot-password")
     fun forgotPassword(@Body forgotPasswordRequest: ForgotPassRequest): Call<ForgotPassResponse>
 
+    @POST("forget-password/check-token/{token)")
+    fun otpPassword(
+        @Path("token") token: String
+    ): Call<ForgotPassResponse>
 
+    @PUT("forget-password/change-password")
+    fun changePassword(@Body passBody: ChangePasswordRequest): Call<ForgotPassResponse>
 }

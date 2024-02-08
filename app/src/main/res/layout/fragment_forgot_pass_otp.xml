@@ -46,7 +46,7 @@
 
         <com.chaos.view.PinView
             android:id="@+id/pin_main"
-            app:itemCount="6"
+            app:itemCount="4"
             app:itemWidth="50dp"
             app:itemHeight="50dp"
             android:gravity="center"
@@ -62,7 +62,7 @@
             style="@style/PinWidget.PinView"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_continue"
             android:backgroundTint="@color/primary_blue_dark"
             app:cornerRadius="12dp"
             android:layout_marginTop="10dp"
@@ -87,5 +87,15 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_main"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
