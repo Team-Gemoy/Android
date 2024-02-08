@@ -10,6 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.common.UiUtils.getTextInputLayout
 import com.synrgy.wefly.common.showDatePickerDialog
@@ -42,13 +43,13 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupUI()
-        observeStateFlow()
     }
 
     private fun setupUI() {
         handleValidation()
         binding.apply {
             btnSignUp.setOnClickListener {
+                observeStateFlow()
                 val checkInputNoError = etEmail.getTextInputLayout().error == null &&
                         etFullname.getTextInputLayout().error == null &&
                         etPhoneNumber.getTextInputLayout().error == null &&
@@ -130,22 +131,24 @@ class RegisterFragment : Fragment() {
     private fun handleRegisterResult(status: ApiResult<RegisterResponse>) {
         when (status) {
             is ApiResult.Loading -> {
-                //pbRegister.visibility = View.VISIBLE
+                binding.pbMain.visibility = View.VISIBLE
                 Log.d("Register", "Loading")
             }
 
             is ApiResult.Error -> {
-                //pbRegister.visibility = View.GONE
+                binding.pbMain.visibility = View.GONE
                 //Toast.makeText(requireContext(), status.errorMessage, Toast.LENGTH_SHORT).show()
                 Log.d("Register", "Error")
+                Toast.makeText(context, "Registration Error: ${status.data?.message}", Toast.LENGTH_SHORT).show()
 
             }
 
             is ApiResult.Success -> {
-                //pbRegister.visibility = View.GONE
-                //Toast.makeText(requireContext(), "Register Success", Toast.LENGTH_SHORT).show()
+                binding.pbMain.visibility = View.GONE
+                val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                findNavController().navigate(action)
                 Log.d("Register", "Success")
-                Toast.makeText(context, "${status.data?.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Registration ${status.data?.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -38,6 +38,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
                 findNavController().navigate(action)
             }
+            tvForgotPass.setOnClickListener {
+                val action = LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment()
+                findNavController().navigate(action)
+            }
             btnLogin.setOnClickListener {
                /* val loginRequest = LoginRequest(
                     email = "laetuzg@gmail.com",

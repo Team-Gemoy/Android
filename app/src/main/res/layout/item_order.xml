@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:theme="@style/Theme.Material3.Light"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:theme="@style/Theme.Material3.Light">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/container_core"
@@ -22,171 +22,148 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center_horizontal"
-                android:text="Orderer Profile"
+                android:text="Transaction"
                 android:textSize="14sp" />
 
-            <TextView
+            <androidx.cardview.widget.CardView
+                android:id="@+id/container_orderer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/fullname"
-                android:textSize="@dimen/text_title" />
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/CustomOutlinedTextField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxBackgroundColor="@color/white"
-                app:errorTextAppearance="@style/ErrorTextAppearance">
-
-                <TextView
-                    android:id="@+id/tv_full_name"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="@string/text_first_name"
-                    android:textSize="@dimen/text_value" />
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:id="@+id/tv_orderer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Orderer Profile"
+                        android:textSize="12sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/email"
-                android:textSize="@dimen/text_title" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/fullname"
+                        android:textSize="@dimen/text_title" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/CustomOutlinedTextField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxBackgroundColor="@color/white"
-                app:errorTextAppearance="@style/ErrorTextAppearance">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/CustomOutlinedTextField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundColor="@color/white"
+                        app:errorTextAppearance="@style/ErrorTextAppearance">
 
-                <TextView
-                    android:id="@+id/tv_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="@string/email"
-                    android:textSize="@dimen/text_value" />
+                        <TextView
+                            android:id="@+id/tv_full_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_light"
+                            android:hint="@string/text_first_name"
+                            android:textSize="@dimen/text_value" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/phone_number"
-                android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/email"
+                        android:textSize="@dimen/text_title" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/CustomOutlinedTextField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                app:boxBackgroundColor="@color/white"
-                app:errorTextAppearance="@style/ErrorTextAppearance">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/CustomOutlinedTextField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundColor="@color/white"
+                        app:errorTextAppearance="@style/ErrorTextAppearance">
 
-                <TextView
-                    android:id="@+id/tv_phone_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:hint="@string/phone_number" />
+                        <TextView
+                            android:id="@+id/tv_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_light"
+                            android:hint="@string/email"
+                            android:textSize="@dimen/text_value" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="City"
-                android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/phone_number"
+                        android:textSize="12sp" />
 
-            <!--<com.google.android.material.textfield.TextInputLayout
-                style="@style/CustomOutlinedTextField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxBackgroundColor="@color/white"
-                app:errorTextAppearance="@style/ErrorTextAppearance">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/CustomOutlinedTextField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        app:boxBackgroundColor="@color/white"
+                        app:errorTextAppearance="@style/ErrorTextAppearance">
 
-                <TextView
-                    android:id="@+id/tv_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="City"
-                    android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/tv_phone_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:hint="@string/phone_number" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/date_of_birth"
-                android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Total Price"
+                        android:textSize="12sp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/CustomOutlinedTextField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxBackgroundColor="@color/white"
-                app:errorTextAppearance="@style/ErrorTextAppearance">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/CustomOutlinedTextField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundColor="@color/white"
+                        app:errorTextAppearance="@style/ErrorTextAppearance">
 
-                <TextView
-                    android:id="@+id/tv_date_of_birth"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="@string/text_nationality"
-                    android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/tv_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_light"
+                            android:hint="Price"
+                            android:textColor="@color/primary_blue"
+                            android:textSize="@dimen/text_value" />
 
-            </com.google.android.material.textfield.TextInputLayout>-->
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Total Price"
-                android:textSize="12sp" />
+                </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/CustomOutlinedTextField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxBackgroundColor="@color/white"
-                app:errorTextAppearance="@style/ErrorTextAppearance">
-
-                <TextView
-                    android:id="@+id/tv_price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="Price"
-                    android:textColor="@color/primary_blue"
-                    android:textSize="@dimen/text_value" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,6 +31,8 @@ class OrderAdapter(
             tvFullName.text = "${itemPosition.orderer.firstName} ${itemPosition.orderer.lastName}"
             tvEmail.text = itemPosition.orderer.email
             tvPhoneNumber.text = itemPosition.orderer.phoneNumber
+            val transactionId = itemPosition.id
+            tvTitle.text = "Transaction #$transactionId"
            // tv.text = itemPosition.paymentProof
          //   tvDepartTime.text = itemPosition.passengers[0].firstName
           /*  tvArrivalCity.text = itemPosition.flight.departureAirport?.city

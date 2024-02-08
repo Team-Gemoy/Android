@@ -4,6 +4,8 @@ import com.synrgy.wefly.data.api.HeaderResponse
 import com.synrgy.wefly.data.api.json.ContentResponse
 import com.synrgy.wefly.data.api.json.airport.list.AirportListResponse
 import com.synrgy.wefly.data.api.json.flight.FlightContent
+import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassRequest
+import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassResponse
 import com.synrgy.wefly.data.api.json.login.LoginRequest
 import com.synrgy.wefly.data.api.json.login.LoginResponse
 import com.synrgy.wefly.data.api.json.register.RegisterRequest
@@ -38,4 +40,9 @@ interface AuthService {
         @Query("seatClass") seatClass: String,
         @Query("numberOfPassenger") numberOfPassenger: Int
     ): HeaderResponse<ContentResponse<FlightContent>>
+
+    @POST("forget-password/forgot-password")
+    fun forgotPassword(@Body forgotPasswordRequest: ForgotPassRequest): Call<ForgotPassResponse>
+
+
 }

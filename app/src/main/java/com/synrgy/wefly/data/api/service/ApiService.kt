@@ -2,8 +2,6 @@ package com.synrgy.wefly.data.api.service
 
 import com.synrgy.wefly.data.api.HeaderResponse
 import com.synrgy.wefly.data.api.json.ContentResponse
-import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassRequest
-import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassResponse
 import com.synrgy.wefly.data.api.json.profile.ProfileResponse
 import com.synrgy.wefly.data.api.json.transaction.TransactionListResponse
 import com.synrgy.wefly.data.api.json.transaction.TransactionRequest
@@ -15,10 +13,6 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
-    @POST("forget-password/forgot-password")
-    fun forgotPassword(@Body forgotPasswordRequest: ForgotPassRequest): Call<ForgotPassResponse>
-
-
 
     @POST("transaction/save")
     fun saveTransaction(
