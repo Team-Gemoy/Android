@@ -47,7 +47,7 @@ interface AuthService {
     @POST("forget-password/forgot-password")
     fun forgotPassword(@Body forgotPasswordRequest: ForgotPassRequest): Call<ForgotPassResponse>
 
-    @POST("forget-password/check-token/{token)")
+    @POST("forget-password/check-token/{token}")
     fun otpPassword(
         @Path("token") token: String
     ): Call<ForgotPassResponse>

@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.synrgy.wefly.R
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.json.forgetpassword.changepassword.ChangePasswordRequest
@@ -29,6 +30,10 @@ class ChangePasswordFragment : Fragment(R.layout.fragment_change_pass) {
 
     private fun setupUI() {
         with(binding) {
+            tvBack.setOnClickListener {
+                val action = ChangePasswordFragmentDirections.actionChangePasswordFragmentToLoginFragment()
+                findNavController().navigate(action)
+            }
             btnReset.setOnClickListener {
                 observeStateFlow()
                 val args = ChangePasswordFragmentArgs.fromBundle(arguments as Bundle)
@@ -52,8 +57,8 @@ class ChangePasswordFragment : Fragment(R.layout.fragment_change_pass) {
                         is ApiResult.Success -> {
                             pbMain.visibility = View.GONE
                             Toast.makeText(context, "Success: ${it.data?.message}", Toast.LENGTH_SHORT).show()
-                          /*  val action = ForgotPasswordOtpFragmentDirections.actionForgotPasswordOtpFragmentToChangePasswordFragment(pinMain.text.toString())
-                            findNavController().navigate(action)*/
+                            val action = ChangePasswordFragmentDirections.actionChangePasswordFragmentToLoginFragment()
+                            findNavController().navigate(action)
                         }
                         is ApiResult.Error -> {
                             pbMain.visibility = View.GONE
