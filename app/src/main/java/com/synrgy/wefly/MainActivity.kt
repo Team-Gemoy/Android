@@ -32,7 +32,10 @@ class MainActivity : AppCompatActivity() {
 
             val isBottomNavVisible = when (destination.id) {
                 R.id.loginFragment,
-                R.id.registerFragment -> false // Replace with your fragment IDs
+                R.id.registerFragment,
+                R.id.forgotPasswordFragment,
+                R.id.forgotPasswordOtpFragment,
+                R.id.changePasswordFragment -> false // Replace with your fragment IDs
                 else -> true
             }
             bottomNavView.visibility = if (isBottomNavVisible) View.VISIBLE else View.GONE
