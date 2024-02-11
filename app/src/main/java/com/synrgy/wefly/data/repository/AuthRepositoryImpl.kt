@@ -6,7 +6,7 @@ import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassResponse
 import com.synrgy.wefly.data.api.json.forgetpassword.changepassword.ChangePasswordRequest
 import com.synrgy.wefly.data.api.json.login.LoginRequest
 import com.synrgy.wefly.data.api.json.login.LoginResponse
-import com.synrgy.wefly.data.api.json.register.RegisterRequest
+import com.synrgy.wefly.data.api.json.register.AccountRequest
 import com.synrgy.wefly.data.api.json.register.RegisterResponse
 import com.synrgy.wefly.data.api.service.AuthService
 import com.synrgy.wefly.domain.AuthRepository
@@ -29,10 +29,10 @@ class AuthRepositoryImpl @Inject constructor(
             emit(ApiResult.Error(it.message ?: "Login error"))
         }
 
-    override fun register(registerRequest: RegisterRequest): Flow<ApiResult<RegisterResponse>> =
+    override fun register(accountRequest: AccountRequest): Flow<ApiResult<RegisterResponse>> =
         flow {
             emit(ApiResult.Loading())
-            val request = apiService.register(registerRequest).await()
+            val request = apiService.register(accountRequest).await()
             emit(ApiResult.Success(request))
         }.catch {
             emit(ApiResult.Error(it.message ?: "Register error"))

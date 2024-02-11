@@ -9,7 +9,7 @@ import com.synrgy.wefly.data.api.json.forgetpassword.ForgotPassResponse
 import com.synrgy.wefly.data.api.json.forgetpassword.changepassword.ChangePasswordRequest
 import com.synrgy.wefly.data.api.json.login.LoginRequest
 import com.synrgy.wefly.data.api.json.login.LoginResponse
-import com.synrgy.wefly.data.api.json.register.RegisterRequest
+import com.synrgy.wefly.data.api.json.register.AccountRequest
 import com.synrgy.wefly.data.api.json.register.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -28,7 +28,7 @@ interface AuthService {
     ): Call<LoginResponse>
 
     @POST("user-register/register-user")
-    fun register(@Body registerRequest: RegisterRequest, @Header("Authorization") header: String? = ""): Call<RegisterResponse>
+    fun register(@Body accountRequest: AccountRequest, @Header("Authorization") header: String? = ""): Call<RegisterResponse>
 
     //Airport
     @GET("airport/list")

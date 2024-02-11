@@ -104,6 +104,9 @@
             app:popUpTo="@+id/accountFragment"
             app:popUpToInclusive="true"
             app:destination="@id/authGroup"/>
+        <action
+            android:id="@+id/action_accountFragment_to_editAccountFragment"
+            app:destination="@id/editAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
@@ -176,4 +179,12 @@
         android:id="@+id/notificationFragment"
         android:name="com.synrgy.wefly.ui.notification.NotificationFragment"
         android:label="NotificationFragment" />
+    <fragment
+        android:id="@+id/editAccountFragment"
+        android:name="com.synrgy.wefly.ui.account.editaccount.EditAccountFragment"
+        android:label="EditAccountFragment" >
+        <action
+            android:id="@+id/action_editAccountFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
 </navigation>
