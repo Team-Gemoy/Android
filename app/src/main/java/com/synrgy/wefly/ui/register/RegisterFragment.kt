@@ -148,7 +148,7 @@ class RegisterFragment : Fragment() {
                 val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
                 findNavController().navigate(action)
                 Log.d("Register", "Success")
-                Toast.makeText(context, "Registration ${status.data?.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Registration ${status.data?.message}, please check email for activation.", Toast.LENGTH_SHORT).show()
             }
         }
     }
