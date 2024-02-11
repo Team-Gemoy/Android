@@ -15,7 +15,7 @@ import com.synrgy.wefly.R
 import com.synrgy.wefly.common.UiUtils.getTextInputLayout
 import com.synrgy.wefly.common.showDatePickerDialog
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.json.register.RegisterRequest
+import com.synrgy.wefly.data.api.json.register.AccountRequest
 import com.synrgy.wefly.data.api.json.register.RegisterResponse
 import com.synrgy.wefly.databinding.FragmentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,7 +56,7 @@ class RegisterFragment : Fragment() {
                         etPassword.getTextInputLayout().error == null
 
                 if (checkInputNoError) {
-                    val registerRequest = RegisterRequest(
+                    val accountRequest = AccountRequest(
                         email = etEmail.text.toString(),
                         fullName = etFullname.text.toString(),
                         phoneNumber = etPhoneNumber.text.toString(),
@@ -64,7 +64,7 @@ class RegisterFragment : Fragment() {
                         dateOfBirth = etDateOfBirth.text.toString()
                     )
 
-                    viewModel.register(registerRequest)
+                    viewModel.register(accountRequest)
                 }
             }
             etDateOfBirth.setOnClickListener {
@@ -148,7 +148,7 @@ class RegisterFragment : Fragment() {
                 val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
                 findNavController().navigate(action)
                 Log.d("Register", "Success")
-                Toast.makeText(context, "Registration ${status.data?.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Registration ${status.data?.message}, please check email for activation.", Toast.LENGTH_SHORT).show()
             }
         }
     }

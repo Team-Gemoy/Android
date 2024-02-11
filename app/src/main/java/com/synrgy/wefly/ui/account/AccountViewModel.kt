@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.synrgy.wefly.data.api.ApiResult
 import com.synrgy.wefly.data.api.HeaderResponse
 import com.synrgy.wefly.data.api.json.profile.ProfileResponse
+import com.synrgy.wefly.data.api.json.register.AccountRequest
 import com.synrgy.wefly.data.repository.PreferenceRepositoryImpl
 import com.synrgy.wefly.data.repository.ProfileRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,6 +34,11 @@ class AccountViewModel @Inject constructor(
         _profile.value = ApiResult.Loading()
         _profile.value = profileRepo.getProfile()
 
+    }
+
+    fun editProfile(profileRequest: AccountRequest) = viewModelScope.launch {
+        _profile.value = ApiResult.Loading()
+        _profile.value = profileRepo.editProfile(profileRequest)
     }
 
     fun logout() = viewModelScope.launch {

@@ -41,6 +41,11 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
             etDateOfBirthPassenger.setOnClickListener {
                 showDatePickerDialog(requireContext(), etDateOfBirthPassenger)
             }
+            etFirstNameOrderer.setText("Ryo")
+            etLastNameOrderer.setText("Martin")
+            etPhoneNumber.setText("0989443743")
+            etEmail.setText("martin@gmail.com")
+
             btnOrder.setOnClickListener {
                 observeStateFlow()
                 val passengersFilled = Passenger(

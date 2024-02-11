@@ -10,7 +10,6 @@ import com.synrgy.wefly.domain.TransactionRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import retrofit2.await
 import javax.inject.Inject
 
 class TransactionRepositoryImpl @Inject constructor(
@@ -19,7 +18,7 @@ class TransactionRepositoryImpl @Inject constructor(
     override fun saveTransaction(transactionRequest: TransactionRequest): Flow<ApiResult<HeaderResponse<TransactionResponseNew>>> =
         flow {
             emit(ApiResult.Loading())
-            val request = apiService.saveTransaction(transactionRequest = transactionRequest).await()
+            val request = apiService.saveTransaction(transactionRequest = transactionRequest)
             emit(ApiResult.Success(request))
         }.catch {
             emit(ApiResult.Error(it.message ?: "Register error"))

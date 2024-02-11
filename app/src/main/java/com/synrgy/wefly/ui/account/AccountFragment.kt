@@ -18,13 +18,14 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class AccountFragment : Fragment(R.layout.fragment_account) {
-    private lateinit var binding: FragmentAccountBinding
+    private var _binding: FragmentAccountBinding? = null
+    private val binding: FragmentAccountBinding get() = _binding!!
 
     private val viewModel: AccountViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentAccountBinding.bind(view)
+        _binding = FragmentAccountBinding.bind(view)
 
 
         repeatCollectionOnCreated { tokenRan() }
@@ -40,6 +41,9 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                 findNavController().popBackStack()
                 findNavController().navigate(action)
 
+            }
+            btnEdit.setOnClickListener {
+                findNavController().navigate(AccountFragmentDirections.actionAccountFragmentToEditAccountFragment())
             }
             tvTitle.setOnClickListener {
                 val intent = Intent(activity, MainActivity::class.java)
@@ -94,5 +98,10 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
         val action = AccountFragmentDirections.actionAccountFragmentToAuthGroup()
         findNavController().navigate(action)
      //   findNavController().popBackStack()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

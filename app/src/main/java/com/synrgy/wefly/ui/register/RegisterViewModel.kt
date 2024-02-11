@@ -3,7 +3,7 @@ package com.synrgy.wefly.ui.register
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.synrgy.wefly.data.api.ApiResult
-import com.synrgy.wefly.data.api.json.register.RegisterRequest
+import com.synrgy.wefly.data.api.json.register.AccountRequest
 import com.synrgy.wefly.data.api.json.register.RegisterResponse
 import com.synrgy.wefly.data.repository.AuthRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,8 +25,8 @@ class RegisterViewModel @Inject constructor(
         MutableStateFlow(ApiResult.Loading())
     val registerStateFlow: StateFlow<ApiResult<RegisterResponse>> = _registerStateFlow.asStateFlow()
 
-    fun register(registerRequest: RegisterRequest) = viewModelScope.launch {
-        authRepo.register(registerRequest).collect {
+    fun register(accountRequest: AccountRequest) = viewModelScope.launch {
+        authRepo.register(accountRequest).collect {
             _registerStateFlow.value = it
         }
     }
