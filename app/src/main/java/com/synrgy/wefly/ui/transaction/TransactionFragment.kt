@@ -73,7 +73,6 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
                     phoneNumber = "0895237478",
                     email = "martin@gmail.com"
                 )
-
                 val orderer = Orderer(
                     createdDate = "",
                     deletedDate = "",
