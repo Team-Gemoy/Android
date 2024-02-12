@@ -74,6 +74,9 @@
             <action
                 android:id="@+id/action_forgotPasswordOtpFragment_to_changePasswordFragment"
                 app:destination="@id/changePasswordFragment" />
+            <action
+                android:id="@+id/action_forgotPasswordOtpFragment_to_loginFragment"
+                app:destination="@id/loginFragment" />
         </fragment>
     </navigation>
 
@@ -174,7 +177,11 @@
     <fragment
         android:id="@+id/paymentSuccessFragment"
         android:name="com.synrgy.wefly.ui.payment.PaymentSuccessFragment"
-        android:label="PaymentSuccessFragment" />
+        android:label="PaymentSuccessFragment" >
+        <action
+            android:id="@+id/action_paymentSuccessFragment_to_homepageFragment"
+            app:destination="@id/homepageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notificationFragment"
         android:name="com.synrgy.wefly.ui.notification.NotificationFragment"

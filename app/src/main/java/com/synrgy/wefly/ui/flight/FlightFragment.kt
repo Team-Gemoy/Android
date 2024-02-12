@@ -3,7 +3,6 @@ package com.synrgy.wefly.ui.flight
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -75,7 +74,7 @@ class FlightFragment : Fragment(R.layout.fragment_flight) {
             override fun onItemClick(item: FlightContent) {
                 val action = FlightFragmentDirections.actionFlightFragmentToTransactionFragment()
                 findNavController().navigate(action)
-                Toast.makeText(context, "${item.flight.basePrice}", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(context, "${item.flight.basePrice}", Toast.LENGTH_SHORT).show()
             }
         })
         recView?.layoutManager = layoutManager

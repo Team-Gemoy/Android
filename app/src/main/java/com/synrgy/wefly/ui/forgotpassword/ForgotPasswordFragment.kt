@@ -16,13 +16,15 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_pass) {
-    private lateinit var binding: FragmentForgotPassBinding
+    private var _binding: FragmentForgotPassBinding? = null
+    private val binding: FragmentForgotPassBinding get() = _binding!!
+
 
     private val viewModel: ForgotPassViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentForgotPassBinding.bind(view)
+        _binding = FragmentForgotPassBinding.bind(view)
 
         setupUI()
     }
@@ -60,4 +62,8 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_pass) {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

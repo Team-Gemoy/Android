@@ -22,13 +22,15 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TransactionFragment : Fragment(R.layout.fragment_transaction) {
-    private lateinit var binding: FragmentTransactionBinding
+    private var _binding: FragmentTransactionBinding? = null
+    private val binding: FragmentTransactionBinding get() = _binding!!
+
 
     private val viewModel: TransactionViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentTransactionBinding.bind(view)
+        _binding = FragmentTransactionBinding.bind(view)
 
         setupUI()
         repeatCollectionOnCreated {
@@ -132,5 +134,10 @@ class TransactionFragment : Fragment(R.layout.fragment_transaction) {
         findNavController().popBackStack()
         val action = TransactionFragmentDirections.actionTransactionFragmentToAuthGroup()
         findNavController().navigate(action)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

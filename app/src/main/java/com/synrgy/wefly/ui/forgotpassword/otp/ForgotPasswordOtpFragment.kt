@@ -17,19 +17,21 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ForgotPasswordOtpFragment : Fragment(R.layout.fragment_forgot_pass_otp) {
-    private lateinit var binding: FragmentForgotPassOtpBinding
+    private var _binding: FragmentForgotPassOtpBinding? = null
+    private val binding: FragmentForgotPassOtpBinding get() = _binding!!
 
     private val viewModel: ForgotPassViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentForgotPassOtpBinding.bind(view)
+        _binding = FragmentForgotPassOtpBinding.bind(view)
 
         setupUI()
     }
 
     private fun setupUI() {
         with(binding) {
+            tvLogin.setOnClickListener { findNavController().navigate(ForgotPasswordOtpFragmentDirections.actionForgotPasswordOtpFragmentToLoginFragment()) }
             btnContinue.setOnClickListener {
                 observeStateFlow()
                 val pin = pinMain.text.toString()
@@ -47,9 +49,17 @@ class ForgotPasswordOtpFragment : Fragment(R.layout.fragment_forgot_pass_otp) {
                         is ApiResult.Loading -> pbMain.visibility = View.VISIBLE
                         is ApiResult.Success -> {
                             pbMain.visibility = View.GONE
-                            Toast.makeText(context, "Success: ${it.data?.message}", Toast.LENGTH_SHORT).show()
-                            val action = ForgotPasswordOtpFragmentDirections.actionForgotPasswordOtpFragmentToChangePasswordFragment(pinMain.text.toString())
-                            findNavController().navigate(action)
+                            val data = it.data?.message
+                            val code = it.data?.code
+                            Toast.makeText(context, "$data", Toast.LENGTH_SHORT).show()
+                            
+                            if (code != 400) {
+                                val action = ForgotPasswordOtpFragmentDirections.actionForgotPasswordOtpFragmentToChangePasswordFragment(pinMain.text.toString())
+                                findNavController().navigate(action)
+                            } else {
+                                Toast.makeText(context, "$data", Toast.LENGTH_SHORT).show()
+                            }
+                            
                         }
                         is ApiResult.Error -> {
                             pbMain.visibility = View.GONE
@@ -61,4 +71,8 @@ class ForgotPasswordOtpFragment : Fragment(R.layout.fragment_forgot_pass_otp) {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

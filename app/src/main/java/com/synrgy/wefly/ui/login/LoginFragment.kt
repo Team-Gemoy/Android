@@ -20,14 +20,16 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
-    private lateinit var binding: FragmentLoginBinding
+    private var _binding: FragmentLoginBinding? =null
+    private val binding: FragmentLoginBinding get() = _binding!!
+
 
     private val viewModel: LoginViewModel by viewModels()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentLoginBinding.bind(view)
+        _binding = FragmentLoginBinding.bind(view)
 
         setupUI()
     }
@@ -101,5 +103,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             val action = LoginFragmentDirections.actionGlobalHomeFragment()
             findNavController().navigate(action)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

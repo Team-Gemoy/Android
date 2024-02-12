@@ -19,13 +19,15 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomepageFragment : Fragment(R.layout.fragment_homepage) {
-    private lateinit var binding: FragmentHomepageBinding
+    private var _binding: FragmentHomepageBinding? = null
+    private val binding: FragmentHomepageBinding get() = _binding!!
+
 
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentHomepageBinding.bind(view)
+        _binding = FragmentHomepageBinding.bind(view)
 
         setupUI()
         repeatCollectionOnCreated {
@@ -112,5 +114,10 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
     private fun gotoLogin() {
         val action = HomepageFragmentDirections.actionHomepageFragmentToAuthGroup()
         findNavController().navigate(action)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
