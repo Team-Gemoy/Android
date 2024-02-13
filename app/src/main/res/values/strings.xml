@@ -1,3 +1,126 @@
 <resources>
     <string name="app_name">WeFly</string>
+    <string name="hint_email">Enter your email</string>
+    <string name="hint_fullname">Enter your full name</string>
+    <string name="hint_password">Enter your password</string>
+    <string name="text_signup">Sign Up</string>
+    <string name="hint_phone">Enter phone number</string>
+    <string name="hint_date_of_birth">Enter your date of birth</string>
+    <string name="text_login">Login</string>
+    <string name="title_good_morning">Good Morning</string>
+    <string name="title_where_are_you_going">Where are you going today?</string>
+    <string name="placeholder_date">Mon, 14 Jan 2024</string>
+    <string name="btn_search">Search your flight</string>
+    <string name="register_now">Register Now !</string>
+    <string name="enter_your_detail">Please enter your details.</string>
+    <string name="email">Email</string>
+    <string name="fullname">Full name</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_up_with_google">Sign up with Google</string>
+    <string name="tnc_agreement">By registering, you agree to our <u>Terms &amp; Conditions</u> and that you have read our <u>Privacy Notice.</u></string>
+
+    <string name="email_required">Email is required</string>
+    <string name="name_required">Full name is required</string>
+    <string name="date_birth_required">Date of birth is required</string>
+    <string name="phone_required">Phone number is required</string>
+    <string name="password_required">Password is required</string>
+    <string name="password_spec">Password require minimum eight characters, at least one letter and one number</string>
+
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="text_home">Home</string>
+    <string name="text_order">Order</string>
+    <string name="text_account">Account</string>
+    <string name="welcome_back">WELCOME BACK</string>
+    <string name="title_forgot_pass">FORGOT PASSWORD?</string>
+    <string name="desc_forgot_pass">No worries, we will send you the reset instructions.</string>
+    <string name="reset_password">Reset password</string>
+    <string name="back_to_login">Back to login</string>
+    <string name="hint_confirm_new_password">Confirm your new password</string>
+    <string name="text_continue">Continue</string>
+    <string name="text_confirm_password">Confirm Password</string>
+    <string name="logout">Logout</string>
+    <string name="departure_to">To</string>
+    <string name="departure_from">From</string>
+
+    <string name="placeholder_loading">Loading…</string>
+    <string name="text_first_name">First Name</string>
+    <string name="text_last_name">Last Name</string>
+    <string name="text_nationality">Nationality</string>
+
+    <integer-array name="passenger">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
+
+    <string-array name="day">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+    </string-array>
+
+    <array name="month">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </array>
+
+    <array name="year">
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+        <item>2026</item>
+        <item>2027</item>
+        <item>2028</item>
+        <item>2029</item>
+        <item>2030</item>
+    </array>
 </resources>

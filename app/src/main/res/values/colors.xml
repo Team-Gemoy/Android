@@ -13,7 +13,7 @@
     <color name="neutral9">#1C1B1F</color>
     
     <color name="primary_blue">#3E7BFA</color>
-    <color name="primary_blue_dark">#3355CC</color>
+    <color name="primary_blue_dark">#3040DC</color>
     <color name="primary_blue_bright">#3A42FF</color>
     <color name="primary_blue_light">#B1C5FF</color>
     
@@ -26,4 +26,6 @@
     <color name="warning">#F1A025</color>
     <color name="success">#18AF5E</color>
     <color name="star">#FFD43A</color>
+
+    <color name="wefly_main">#3040DC</color>
 </resources>
