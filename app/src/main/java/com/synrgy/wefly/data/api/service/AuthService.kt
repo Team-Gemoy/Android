@@ -31,10 +31,10 @@ interface AuthService {
     fun register(@Body accountRequest: AccountRequest, @Header("Authorization") header: String? = ""): Call<RegisterResponse>
 
     //Airport
-    @GET("airport/list")
+    @GET("airport/listDropDown")
     suspend fun getAirportList(): AirportListResponse
 
-    @GET("flight/list")
+    @GET("flight/listAndroid")
     suspend fun getFlight(
         //  @Path("departDate") departDate: String
         @Query("departureAirportId") departureAirportId: Int,

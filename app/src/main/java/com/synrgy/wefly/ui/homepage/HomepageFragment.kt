@@ -39,6 +39,7 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
 
     private fun setupUI() {
         with(binding) {
+            etDateDeparture.setText("15-02-2024")
             ivNotification.setOnClickListener {
                 val action = HomepageFragmentDirections.actionHomepageFragmentToNotificationFragment()
                 findNavController().navigate(action)
@@ -54,7 +55,8 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
                     seatClass = spSeatClass.selectedItem.toString(),
                     passenger = spPassenger.selectedItem.toString().toInt(),
                     airportDepart = departId.text.toString().toInt(),
-                    airportArrival = arriveId.text.toString().toInt()
+                    airportArrival = arriveId.text.toString().toInt(),
+                    departDate = etDateDeparture.text.toString()
                 )
                 findNavController().navigate(action)
             }
@@ -68,7 +70,7 @@ class HomepageFragment : Fragment(R.layout.fragment_homepage) {
     private fun observeStateFlow() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.airportList.collect {
-                val content = it.data?.data?.content
+                val content = it.data?.data
                 val res = it.data
                 when(it){
                     is ApiResult.Loading -> binding.pbHome.visibility = View.VISIBLE

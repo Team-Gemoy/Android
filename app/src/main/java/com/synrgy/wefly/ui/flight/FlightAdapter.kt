@@ -33,7 +33,7 @@ class FlightAdapter(
             tvSeatClass.text = itemPosition.seatClass
             tvDepartCity.text = itemPosition.flight.departureAirport?.city
             tvDepartTime.text = itemPosition.flight.departureTime
-            tvArrivalCity.text = itemPosition.flight.departureAirport?.city
+            tvArrivalCity.text = itemPosition.flight.arrivalAirport?.city
             tvArrivalTime.text = itemPosition.flight.arrivalTime
             tvPrice.text = itemPosition.flight.basePrice.toString()
             root.setOnClickListener { listener.onItemClick(itemPosition) }

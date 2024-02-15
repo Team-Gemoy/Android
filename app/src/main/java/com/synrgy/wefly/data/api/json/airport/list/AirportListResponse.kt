@@ -3,12 +3,12 @@ package com.synrgy.wefly.data.api.json.airport.list
 import com.google.gson.annotations.SerializedName
 
 data class AirportListResponse (
-    val data: DataAirport
+    val data: ArrayList<ContentAirport>
 )
 
 data class DataAirport (
     val content: ArrayList<ContentAirport>,
-    val pageable: PageAble,
+    /*val pageable: PageAble,
     val totalPages: Int,
     val last: Boolean,
     val totalElements: Int,
@@ -17,7 +17,7 @@ data class DataAirport (
     val sort: PageAbleSort,
     val numberIfElements: Int,
     val first: Boolean,
-    val empty: Boolean
+    val empty: Boolean*/
 )
 
 data class ContentAirport(
@@ -25,9 +25,12 @@ data class ContentAirport(
     val deletedDate: String?,
     val updatedDate: String?,
     val id: Int,
+    val iata: String,
+    val icao: String,
     val name: String,
     val airportCode: String,
     val city: String,
+    val province: String,
     val country: String,
     val status: Boolean
 )
